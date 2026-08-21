@@ -41,4 +41,9 @@ export class Game {
     }
     document.body.appendChild(canvasElement);
   }
+
+  render() {
+    console.log("Rendering frames");
+    requestAnimationFrame(() => this.render());
+  }
 }
