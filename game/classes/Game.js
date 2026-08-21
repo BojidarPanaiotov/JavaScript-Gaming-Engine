@@ -6,6 +6,7 @@ export class Game {
   fullScreen;
   spacing;
   showBorder;
+  ctx;
 
   constructor(width, height, fullScreen = false, spacing = 0, showBorder = false) {
     this.width = width;
@@ -13,6 +14,7 @@ export class Game {
     this.fullScreen = fullScreen;
     this.spacing = spacing;
     this.showBorder = showBorder;
+    this.ctx = null;
   }
 
   start() {
@@ -40,10 +42,19 @@ export class Game {
       canvasElement.height = this.height;
     }
     document.body.appendChild(canvasElement);
+    this.ctx = canvasElement.getContext('2d');
   }
 
-  render() {
-    console.log("Rendering frames");
-    requestAnimationFrame(() => this.render());
+  render(gameObject) {
+    this.clearCanvas();
+  
+    gameObject.update();
+    gameObject.render();
+
+    requestAnimationFrame(() => this.render(gameObject));
+  }
+
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, innerWidth, innerHeight);
   }
 }
