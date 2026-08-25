@@ -55,7 +55,7 @@ export class Game extends GameMap {
     document.body.appendChild(this.canvas)
   }
 
-  renderWithCoordinateSystem(multiplier: number) {
+  renderCoordinateSystem(multiplier: number) {
     for (let i = 1; i <= this.canvas.width; i++) {
       this.ctx.fillStyle = GAME.COORDINATE_SYSTEM_COLOR;
       this.ctx.fillRect(i * multiplier, 0, 1, this.canvas.height);
