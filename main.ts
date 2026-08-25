@@ -1,4 +1,4 @@
-const namee: string = 'John';
+import { Game } from "./game/entities/classes/Game";
 
-console.log(namee);
-console.log(namee);
+const game = new Game()
+game.start()
