@@ -9,7 +9,7 @@ export class Game extends GameMap {
     height: number = 400, 
     fullscreen: boolean = true, 
     border: boolean = true,
-    spacing: number = -0
+    spacing: number = 32
   ) {
     super();
 
@@ -56,10 +56,14 @@ export class Game extends GameMap {
   }
 
   renderCoordinateSystem(multiplier: number) {
-    for (let i = 1; i <= this.canvas.width; i++) {
+    const rowsToRender = Math.floor(this.canvas.width / multiplier);
+    const colsToRender = Math.floor(this.canvas.height / multiplier);
+    const totalRenders = Math.max(rowsToRender,colsToRender);
+
+    for (let i = 1; i <= totalRenders; i++) {
       this.ctx.fillStyle = GAME.COORDINATE_SYSTEM_COLOR;
-      this.ctx.fillRect(i * multiplier, 0, 1, this.canvas.height);
-      this.ctx.fillRect(0, i * multiplier, this.canvas.width, 1);
+      this.ctx.fillRect(i * multiplier, 0, 1, this.canvas.height); // Column
+      this.ctx.fillRect(0, i * multiplier, this.canvas.width, 1); // Row
     }
   }
 }

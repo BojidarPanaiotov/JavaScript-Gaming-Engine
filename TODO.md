@@ -8,3 +8,4 @@
 - [x] Make canvas set optionl width and height plus border
 - [x] Set configurable outer space for canva
 - [x] Draw X and Y Coordinate System inside the canvas
+- [ ] Optimize Coordinate System Rendering time
