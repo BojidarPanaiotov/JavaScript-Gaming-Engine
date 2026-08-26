@@ -1,4 +1,4 @@
-import {GameMap} from '../GameMap'
+import {GameMap} from '../abstraction/GameMap'
 import { GAME } from '../../constants/constants';
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;

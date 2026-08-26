@@ -1,4 +1,4 @@
-import { GameObject, ICoordinates } from "../GameObject";
+import { GameObject, ICoordinates } from "../abstraction/GameObject";
 
 export class Square extends GameObject {
   constructor(coordinates: ICoordinates) {

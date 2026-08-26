@@ -10,4 +10,5 @@
 - [x] Draw X and Y Coordinate System inside the canvas
 - [x] Optimize Coordinate System Rendering time
 - [x] Introduce a GamingObject abstract class
-- [ ] Render into the Coordinate System
+- [x] Render into the Coordinate System
+- [ ] Introduce an abstract class SpriteSheet
