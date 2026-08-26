@@ -6,6 +6,10 @@ export class Dino extends SpriteSheetObject {
   }
 
   render(): void {
+    if (!this.isLoaded) {
+      return;
+    }
+
     game.ctx.drawImage(this.image, 0, 0);
   }
 }
