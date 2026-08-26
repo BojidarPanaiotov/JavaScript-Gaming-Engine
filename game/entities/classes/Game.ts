@@ -55,6 +55,10 @@ export class Game extends GameMap {
     document.body.appendChild(this.canvas)
   }
 
+  clear(): void {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   renderCoordinateSystem(multiplier: number) {
     const rowsToRender = Math.floor(this.canvas.width / multiplier);
     const colsToRender = Math.floor(this.canvas.height / multiplier);

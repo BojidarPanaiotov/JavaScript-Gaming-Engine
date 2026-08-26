@@ -5,4 +5,7 @@ export abstract class GameMap {
 
   start(): void {
   }
+
+  clear(): void {
+  }
 }
