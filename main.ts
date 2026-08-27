@@ -1,15 +1,16 @@
+import { SpriteSheet } from "./game/entities/classes/SpriteSheet";
 import { Game } from "./game/entities/classes/Game";
-import { Dino } from "./game/entities/classes/Dino";
+import { Square } from "./game/entities/classes/Square";
 
 const game = new Game();
 globalThis.game = game;
 game.start();
 
-const dino = new Dino('./game/assets/dino-walk.png', true);
+const square = new Square(0, 0);
 
 function loop() {
   game.clear();
-  dino.render();
+  square.render();
   requestAnimationFrame(loop);
 }
 

@@ -1,18 +1,18 @@
-export interface ICoordinates {
-  x: number;
-  y: number;
-}
+import { SpriteSheet } from "../classes/SpriteSheet";
 
 export abstract class GameObject {
   public x: number;
   public y: number;
+  public spriteSheet?: SpriteSheet;
 
-  constructor(coordinates: ICoordinates) {
-    this.x = coordinates.x;
-    this.y = coordinates.y;
+  constructor(x: number, y: number, spriteSheet?: SpriteSheet) {
+    this.x = x;
+    this.y = y;
+    if (spriteSheet) {
+      this.spriteSheet = spriteSheet;
+    }
   }
 
-  abstract render(multiplier: number): void
-  abstract destroy(multiplier: number): boolean
-  abstract collides(gamingObject: GameObject): boolean
+  abstract render(): void
+  abstract destroy(): boolean
 }

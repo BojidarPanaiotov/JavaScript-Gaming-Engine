@@ -1,25 +1,14 @@
-import { GameObject, ICoordinates } from "../abstraction/GameObject";
+import { GameObject } from "../abstraction/GameObject";
+import { SpriteSheet } from "./SpriteSheet";
 
 export class Square extends GameObject {
-  constructor(coordinates: ICoordinates) {
-    super(coordinates);
-  }
-
-  render(multiplier: number): void {
+  render(): void {
     game.ctx.fillStyle = 'red';
-    game.ctx.fillRect(this.x, this.y, multiplier, multiplier);
+    game.ctx.fillRect(this.x, this.y, 24, 24);
   }
 
-  destroy(multiplier: number): boolean {
-    game.ctx.clearRect(this.x, this.y, multiplier, multiplier);
+  destroy(): boolean {
+    game.ctx.clearRect(this.x, this.y, 24, 24);
     return true;
-  }
-
-  collides(gamingObject: GameObject): boolean {
-    const otherX = gamingObject.x;
-    const otherY = gamingObject.y;
-    const thisX = this.x;
-    const thisY = this.y;
-    return otherX === thisX && otherY === thisY;
   }
 }
