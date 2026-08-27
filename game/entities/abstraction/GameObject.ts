@@ -1,5 +1,7 @@
 import { SpriteSheet } from "../classes/SpriteSheet";
 
+export type Animations = 'idle' | 'walk' | 'run' | 'attack'
+
 export abstract class GameObject {
   public x: number;
   public y: number;
@@ -15,4 +17,6 @@ export abstract class GameObject {
 
   abstract render(): void
   abstract destroy(): boolean
+  abstract update(): void
+  abstract animate(animation: Animations): void
 }
