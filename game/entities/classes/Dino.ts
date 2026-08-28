@@ -16,7 +16,7 @@ export class Dino extends GameObject {
   }
 
   destroy(): boolean {
-    game.ctx.clearRect(this.x, this.y, 24, 24);
+    game.ctx.clearRect(this.x, this.y, this.size, this.size);
     return true;
   }
 
@@ -34,8 +34,11 @@ export class Dino extends GameObject {
 
     const bitmap = this.spriteSheet.frames[this.#frame];
     if (bitmap) {
+      game.ctx.save();
       game.ctx.imageSmoothingEnabled = false;
-      game.ctx.drawImage(bitmap, this.x, this.y, 24, 24);
+      this.flip();
+      game.ctx.drawImage(bitmap, this.x, this.y, this.size, this.size);
+      game.ctx.restore();
     }
 
     const now = performance.now();
@@ -43,7 +46,7 @@ export class Dino extends GameObject {
     const timeToNextFrame = 1000 / clip.fps;
 
     if (timeSinceLastFrameChanged >= timeToNextFrame) {
-      this.#frame++;
+      this.#frame++;  
       if (this.#frame > clip.to) {
         this.#frame = clip.from;
       }
@@ -51,6 +54,14 @@ export class Dino extends GameObject {
     }
   }
 
-  update(): void {
+  update(x: number, y: number): void {
+    if (x < 0) {
+      this.mirrored = true;
+    } else if (x > 0) {
+      this.mirrored = false;
+    }
+
+    this.x += x;
+    this.y += y;
   }
 }
