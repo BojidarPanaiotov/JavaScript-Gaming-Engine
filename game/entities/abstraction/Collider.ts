@@ -14,5 +14,6 @@ export abstract class Collider {
   }
 
   abstract renderBorder(): void;
-  abstract collides(obj: GameObject): boolean;
+  abstract collideSingle(obj: GameObject): boolean;
+  abstract collideMultiple(objs: GameObject[]): void;
 }

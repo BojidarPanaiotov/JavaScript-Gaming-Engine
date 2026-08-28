@@ -23,7 +23,7 @@ function loop() {
   dino2.render();
   dino2.collider.renderBorder();
 
-  const collides = dino.collider.collides(dino2);
+  const collides = dino.collider.collideSingle(dino2);
   if (collides) {
     console.log('Collides');
   }

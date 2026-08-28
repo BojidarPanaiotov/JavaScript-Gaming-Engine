@@ -12,12 +12,15 @@ export class SquareCollider extends Collider {
     game.ctx.strokeRect(this.currentGameObject.x, this.currentGameObject.y, this.currentGameObject.size, this.currentGameObject.size);
   }
 
-  collides(obj: GameObject): boolean {
+  collideSingle(obj: GameObject): boolean {
     const collides = 
       obj.x < this.currentGameObject.x + this.size && 
       obj.x + obj.size > this.currentGameObject.x && 
       obj.y < this.currentGameObject.y + this.size && 
       obj.y + obj.size > this.currentGameObject.y;
     return collides;
+  }
+
+  collideMultiple(objs: GameObject[]): void {
   }
 }
