@@ -8,4 +8,8 @@ export abstract class GameMap {
 
   clear(): void {
   }
+
+  resize(): void {
+    
+  }
 }

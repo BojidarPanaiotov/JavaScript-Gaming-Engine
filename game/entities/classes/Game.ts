@@ -3,6 +3,8 @@ import { GAME } from '../../constants/constants';
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
+  border: boolean;
+  spacing: number;
 
   constructor(
     width: number = 800, 
@@ -12,7 +14,7 @@ export class Game extends GameMap {
     spacing: number = 32
   ) {
     super();
-
+    
     const canvas = document.createElement('canvas');
     const context = canvas.getContext("2d");
 
@@ -21,6 +23,10 @@ export class Game extends GameMap {
     }
 
     this.ctx = context;
+    this.canvas = canvas;
+    this.spacing = spacing;
+    this.border = border;
+
     canvas.width = width;
     canvas.height = height;
 
@@ -36,27 +42,35 @@ export class Game extends GameMap {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
 
-      if (border) {
-        canvas.width = canvas.width - (GAME.SCREEN_BORDER_WIDTH * 2);
-        canvas.height = canvas.height - (GAME.SCREEN_BORDER_WIDTH * 2);
-      }
-
-      if (spacing) {
-        canvas.width = canvas.width - spacing * 2;
-        canvas.height = canvas.height - spacing * 2;
-      }
+      this.resize()
     }
-
-
-    this.canvas = canvas;
   }
 
   start(): void {
     document.body.appendChild(this.canvas)
+
+    window.addEventListener('resize', () => {
+      this.resize()
+    });
   }
 
   clear(): void {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  resize(): void {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+
+    if (this.border) {
+      this.canvas.width = this.canvas.width - (GAME.SCREEN_BORDER_WIDTH * 2);
+      this.canvas.height = this.canvas.height - (GAME.SCREEN_BORDER_WIDTH * 2);
+    }
+
+    if (this.spacing) {
+      this.canvas.width = this.canvas.width - this.spacing * 2;
+      this.canvas.height = this.canvas.height - this.spacing * 2;
+    }
   }
 
   renderCoordinateSystem(multiplier: number) {
