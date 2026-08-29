@@ -20,6 +20,7 @@ export abstract class GameObject {
       this.spriteSheet = spriteSheet;
     }
     this.collider = new SquareCollider(x, y, size, this);
+    game.gameObjects.push(this);
   }
 
   abstract render(): void

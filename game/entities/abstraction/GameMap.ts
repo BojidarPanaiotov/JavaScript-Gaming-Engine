@@ -1,4 +1,7 @@
+import { GameObject } from "./GameObject";
 export abstract class GameMap {
+  gameObjects: GameObject[] = [];
+
   constructor() {
 
   }
