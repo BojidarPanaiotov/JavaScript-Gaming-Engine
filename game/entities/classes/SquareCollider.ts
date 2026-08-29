@@ -6,7 +6,12 @@ export class SquareCollider extends AbstractCollider {
   renderBorder():void {
     game.ctx.strokeStyle = 'green';
     game.ctx.lineWidth = 1;
-    game.ctx.strokeRect(this.currentGameObject.x, this.currentGameObject.y, this.currentGameObject.size, this.currentGameObject.size);
+    game.ctx.strokeRect(
+      this.currentGameObject.x, 
+      this.currentGameObject.y, 
+      this.currentGameObject.size, 
+      this.currentGameObject.size
+    );
   }
 
   collideSingle(obj: GameObject): boolean {
