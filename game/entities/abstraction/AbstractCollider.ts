@@ -22,6 +22,12 @@ export abstract class AbstractCollider implements ICollider {
     this.currentGameObject = gameObject;
   }
 
+  static renderAllBorders(): void {
+    game.gameObjects.forEach(obj => {
+      obj.collider.renderBorder();
+    });
+  }
+
   abstract renderBorder(): void;
   abstract collideSingle(obj: GameObject): boolean;
 }
