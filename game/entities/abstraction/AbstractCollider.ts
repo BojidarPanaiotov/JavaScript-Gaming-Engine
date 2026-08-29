@@ -1,6 +1,15 @@
 import { GameObject } from "./GameObject";
 
-export abstract class Collider {
+export interface ICollider {
+  x: number;
+  y: number;
+  size: number;
+  currentGameObject: GameObject;
+  renderBorder(): void;
+  collideSingle(obj: GameObject): boolean;
+}
+
+export abstract class AbstractCollider implements ICollider {
   public x;
   public y;
   public size;
@@ -15,5 +24,4 @@ export abstract class Collider {
 
   abstract renderBorder(): void;
   abstract collideSingle(obj: GameObject): boolean;
-  abstract collideMultiple(objs: GameObject[]): void;
 }

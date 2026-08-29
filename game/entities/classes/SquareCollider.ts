@@ -1,26 +1,15 @@
 import { GameObject } from "../abstraction/GameObject";
-import { Collider } from "../abstraction/Collider";
+import { AbstractCollider } from "../abstraction/AbstractCollider";
+import * as utils from '../../utils/algorithms/aabb';
 
-export class SquareCollider extends Collider {
-  constructor(x: number, y: number, size: number, gameObject: GameObject) {
-    super(x, y, size, gameObject);
-  }
-
+export class SquareCollider extends AbstractCollider {
   renderBorder():void {
     game.ctx.strokeStyle = 'green';
-    game.ctx.lineWidth = 2;
+    game.ctx.lineWidth = 1;
     game.ctx.strokeRect(this.currentGameObject.x, this.currentGameObject.y, this.currentGameObject.size, this.currentGameObject.size);
   }
 
   collideSingle(obj: GameObject): boolean {
-    const collides = 
-      obj.x < this.currentGameObject.x + this.size && 
-      obj.x + obj.size > this.currentGameObject.x && 
-      obj.y < this.currentGameObject.y + this.size && 
-      obj.y + obj.size > this.currentGameObject.y;
-    return collides;
-  }
-
-  collideMultiple(objs: GameObject[]): void {
+    return utils.algorithms.aabb(this.currentGameObject, obj);
   }
 }

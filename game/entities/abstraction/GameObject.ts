@@ -1,5 +1,6 @@
 import { SpriteSheet } from "../classes/SpriteSheet";
 import { SquareCollider } from "../classes/SquareCollider";
+import { ICollider } from "./AbstractCollider";
 
 export type Animations = 'idle' | 'walk' | 'run' | 'attack'
 
@@ -8,7 +9,7 @@ export abstract class GameObject {
   public y: number;
   public size: number;
   public spriteSheet?: SpriteSheet;
-  public collider: SquareCollider;
+  public collider: ICollider;
   protected mirrored: boolean = false;
 
   constructor(x: number, y: number, size: number, spriteSheet?: SpriteSheet) {
