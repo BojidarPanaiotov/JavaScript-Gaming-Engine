@@ -1,15 +1,16 @@
 import { generateRandomNumber } from "../../utils/algorithms/utils";
-import { GameObject } from "../abstraction/GameObject";
+import { AbstractGameObject } from "../abstraction/AbstractGameObject";
 import { SpriteSheet } from "./SpriteSheet";
 
-export type GameObjectCtor<T extends GameObject> = new (
+export type GameObjectCtor<T extends AbstractGameObject> = new (
   x: number,
   y: number,
-  size: number,
+  width: number,
+  height: number,
   spriteSheet?: SpriteSheet,
 ) => T;
 
-export class Spawner<T extends GameObject> {
+export class Spawner<T extends AbstractGameObject> {
   #spawnedObjects: T[] = [];
 
   constructor(
@@ -31,7 +32,7 @@ export class Spawner<T extends GameObject> {
     for (let i = 0; i < count; i++) {
       const x = generateRandomNumber(0, game.canvas.width - this.size);
       const y = generateRandomNumber(0, game.canvas.height - this.size);
-      spawned.push(new this.Ctor(x, y, this.size, this.spriteSheet));
+      spawned.push(new this.Ctor(x, y, this.size, this.size, this.spriteSheet));
     }
 
     return spawned;

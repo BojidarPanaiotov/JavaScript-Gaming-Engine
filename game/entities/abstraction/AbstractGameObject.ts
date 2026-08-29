@@ -4,22 +4,39 @@ import { ICollider } from "./AbstractCollider";
 
 export type Animations = 'idle' | 'walk' | 'run' | 'attack'
 
-export abstract class GameObject {
+export interface IGameObject {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  collider?: ICollider;
+  spriteSheet?: SpriteSheet;
+}
+
+export abstract class AbstractGameObject implements IGameObject {
   public x: number;
   public y: number;
-  public size: number;
+  public width: number;
+  public height: number;
   public spriteSheet?: SpriteSheet;
-  public collider: ICollider;
+  public collider?: ICollider;
   protected mirrored: boolean = false;
 
-  constructor(x: number, y: number, size: number, spriteSheet?: SpriteSheet) {
+  constructor(
+    x: number, 
+    y: number, 
+    width: number, 
+    height: number, 
+    spriteSheet?: SpriteSheet
+) {
     this.x = x;
     this.y = y;
-    this.size = size;
+    this.width = width;
+    this.height = height;
     if (spriteSheet) {
       this.spriteSheet = spriteSheet;
     }
-    this.collider = new SquareCollider(x, y, size, this);
+    this.collider = new SquareCollider(x, y, width, height, this);
     game.gameObjects.push(this);
   }
 
@@ -33,8 +50,8 @@ export abstract class GameObject {
       return;
     }
 
-    const centerX = this.x + this.size / 2;
-    const centerY = this.y + this.size / 2;
+    const centerX = this.x + this.width / 2;
+    const centerY = this.y + this.height / 2;
 
     game.ctx.translate(centerX, centerY);
     game.ctx.scale(-1, 1);

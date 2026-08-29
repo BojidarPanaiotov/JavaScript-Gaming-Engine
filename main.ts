@@ -9,9 +9,9 @@ globalThis.game = game;
 game.start();
 
 const speed = 5;
-const size = 96;
+const size = 24;
 const dinoSpriteSheet = new SpriteSheet('./game/assets/dino-walk.png', true);
-const spawner = new Spawner(Dino, size, dinoSpriteSheet);
+const spawner = new Spawner(Dino, size, dinoSpriteSheet, 100);
 
 function loop() {
   game.clear();

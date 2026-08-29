@@ -1,4 +1,4 @@
-import { Animations, GameObject } from "../abstraction/GameObject";
+import { Animations, AbstractGameObject } from "../abstraction/AbstractGameObject";
 
 const animations = {
   idle: { from: 0, to: 3, fps: 6 },
@@ -7,7 +7,7 @@ const animations = {
   attack: { from: 12, to: 15, fps: 6 },
 };
 
-export class Dino extends GameObject {
+export class Dino extends AbstractGameObject {
   #frame = 0;
   #lastTimeFrameChanged = 0;
 
@@ -16,7 +16,7 @@ export class Dino extends GameObject {
   }
 
   destroy(): boolean {
-    game.ctx.clearRect(this.x, this.y, this.size, this.size);
+    game.ctx.clearRect(this.x, this.y, this.width, this.height);
     return true;
   }
 
@@ -37,7 +37,7 @@ export class Dino extends GameObject {
       game.ctx.save();
       game.ctx.imageSmoothingEnabled = false;
       this.flip();
-      game.ctx.drawImage(bitmap, this.x, this.y, this.size, this.size);
+      game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
       game.ctx.restore();
     }
 

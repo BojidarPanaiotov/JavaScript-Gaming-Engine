@@ -1,6 +1,6 @@
 import {GameMap} from '../abstraction/GameMap'
 import { GAME } from '../../constants/constants';
-import { GameObject } from '../abstraction/GameObject';
+import { GameObject } from '../abstraction/AbstractGameObject';
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;

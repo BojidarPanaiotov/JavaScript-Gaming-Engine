@@ -1,4 +1,4 @@
-import { GameObject } from "../abstraction/GameObject";
+import { IGameObject } from "../abstraction/AbstractGameObject";
 import { AbstractCollider } from "../abstraction/AbstractCollider";
 import * as utils from '../../utils/algorithms/aabb';
 
@@ -9,12 +9,12 @@ export class SquareCollider extends AbstractCollider {
     game.ctx.strokeRect(
       this.currentGameObject.x, 
       this.currentGameObject.y, 
-      this.currentGameObject.size, 
-      this.currentGameObject.size
+      this.currentGameObject.width, 
+      this.currentGameObject.height, 
     );
   }
 
-  collideSingle(obj: GameObject): boolean {
+  collideSingle(obj: IGameObject): boolean {
     return utils.algorithms.aabb(this.currentGameObject, obj);
   }
 }
