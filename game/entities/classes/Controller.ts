@@ -1,10 +1,10 @@
-import { GameObject } from "../abstraction/AbstractGameObject";
+import { IGameObject } from "../abstraction/AbstractGameObject";
 
 export class Controller {
   keys = new Set<string>();
-  gameObject: GameObject;
+  gameObject: IGameObject;
 
-  constructor(gameObject: GameObject) {
+  constructor(gameObject: IGameObject) {
     this.bindKeyDownEvent();
     this.bindKeyUpEvent();
     this.gameObject = gameObject;

@@ -2,8 +2,6 @@ import { SpriteSheet } from "../classes/SpriteSheet";
 import { SquareCollider } from "../classes/SquareCollider";
 import { ICollider } from "./AbstractCollider";
 
-export type Animations = 'idle' | 'walk' | 'run' | 'attack'
-
 export interface IGameObject {
   x: number;
   y: number;
@@ -11,6 +9,11 @@ export interface IGameObject {
   height: number;
   collider?: ICollider;
   spriteSheet?: SpriteSheet;
+  update(x: number, y: number): void;
+  render(): void;
+  destroy(): boolean;
+  animate(animation?: string): void;
+  flip(): void;
 }
 
 export abstract class AbstractGameObject implements IGameObject {
@@ -43,7 +46,7 @@ export abstract class AbstractGameObject implements IGameObject {
   abstract render(): void
   abstract destroy(): boolean
   abstract update(x: number, y: number): void
-  abstract animate(animation: Animations): void
+  abstract animate(animation?: string): void
 
   flip(): void {
     if (!this.mirrored) {
