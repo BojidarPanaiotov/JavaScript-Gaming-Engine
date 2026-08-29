@@ -39,8 +39,6 @@ export class Controller {
       y += speed;
     }
 
-    if (x !== 0 || y !== 0) {
-      this.gameObject.update(x, y);
-    }
+    this.gameObject.update(x, y);
   }
 }

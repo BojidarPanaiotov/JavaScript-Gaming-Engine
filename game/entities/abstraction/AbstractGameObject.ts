@@ -12,7 +12,7 @@ export interface IGameObject {
   update(x: number, y: number): void;
   render(): void;
   destroy(): boolean;
-  animate(animation?: string): void;
+  animate(): void;
   flip(): void;
 }
 
@@ -44,10 +44,19 @@ export abstract class AbstractGameObject implements IGameObject {
   }
 
   abstract render(): void
-  abstract destroy(): boolean
   abstract update(x: number, y: number): void
-  abstract animate(animation?: string): void
+  abstract animate(): void
 
+  destroy(): boolean {
+    const index = game.gameObjects.indexOf(this);
+    if (index === -1) {
+      return false;
+    }
+  
+    game.gameObjects.splice(index, 1);
+    return true;
+  }
+  
   flip(): void {
     if (!this.mirrored) {
       return;

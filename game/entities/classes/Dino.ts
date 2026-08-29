@@ -10,34 +10,26 @@ const animations = {
 type DinoAnimation = keyof typeof animations;
 
 export class Dino extends AbstractGameObject {
+  #currentAnimation: DinoAnimation = 'idle';
   #frame = 0;
   #lastTimeFrameChanged = 0;
-  currentAnimation: DinoAnimation = 'idle';
 
-  render(): void {
-    if (!this.spriteSheet) {
-      return;
+  update(x: number, y: number): void {
+    const doesMoved = x !== 0 || y !== 0;
+
+    if (x < 0) {
+      this.mirrored = true;
+    } else if (x > 0) {
+      this.mirrored = false;
     }
 
-    const bitmap = this.spriteSheet.frames[this.#frame];
-    if (bitmap) {
-      game.ctx.save();
-      game.ctx.imageSmoothingEnabled = false;
-      this.flip();
-      game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
-      game.ctx.restore();
-    }
+    this.#currentAnimation = doesMoved ? 'walk' : 'idle';
+    this.x += x;
+    this.y += y;
   }
 
-  destroy(): boolean {
-    game.ctx.clearRect(this.x, this.y, this.width, this.height);
-    return true;
-  }
-
-  animate(animation: DinoAnimation = 'idle'): void {
-    this.currentAnimation = animation;
-
-    const clip = animations[animation];
+  animate(): void {
+    const clip = animations[this.#currentAnimation];
     const isOutOfRange = this.#frame < clip.from || this.#frame > clip.to;
 
     if (isOutOfRange) {
@@ -49,7 +41,7 @@ export class Dino extends AbstractGameObject {
     const timeToNextFrame = 1000 / clip.fps;
 
     if (timeSinceLastFrameChanged >= timeToNextFrame) {
-      this.#frame++;  
+      this.#frame++;
       if (this.#frame > clip.to) {
         this.#frame = clip.from;
       }
@@ -57,14 +49,20 @@ export class Dino extends AbstractGameObject {
     }
   }
 
-  update(x: number, y: number): void {
-    if (x < 0) {
-      this.mirrored = true;
-    } else if (x > 0) {
-      this.mirrored = false;
+  render(): void {
+    if (!this.spriteSheet) {
+      return;
     }
 
-    this.x += x;
-    this.y += y;
+    const bitmap = this.spriteSheet.frames[this.#frame];
+    if (!bitmap) {
+      return;
+    }
+
+    game.ctx.save();
+    game.ctx.imageSmoothingEnabled = false;
+    this.flip();
+    game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
+    game.ctx.restore();
   }
 }
