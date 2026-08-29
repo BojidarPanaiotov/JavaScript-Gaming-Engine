@@ -1,4 +1,4 @@
-import { Animations, AbstractGameObject } from "../abstraction/AbstractGameObject";
+import { AbstractGameObject } from "../abstraction/AbstractGameObject";
 
 const animations = {
   idle: { from: 0, to: 3, fps: 6 },
@@ -7,29 +7,16 @@ const animations = {
   attack: { from: 12, to: 15, fps: 6 },
 };
 
+type DinoAnimation = keyof typeof animations;
+
 export class Dino extends AbstractGameObject {
   #frame = 0;
   #lastTimeFrameChanged = 0;
+  currentAnimation: DinoAnimation = 'idle';
 
   render(): void {
-    this.animate('idle');
-  }
-
-  destroy(): boolean {
-    game.ctx.clearRect(this.x, this.y, this.width, this.height);
-    return true;
-  }
-
-  animate(animation: Animations): void {
     if (!this.spriteSheet) {
       return;
-    }
-
-    const clip = animations[animation];
-    const isOutOfRange = this.#frame < clip.from || this.#frame > clip.to;
-
-    if (isOutOfRange) {
-      this.#frame = clip.from;
     }
 
     const bitmap = this.spriteSheet.frames[this.#frame];
@@ -39,6 +26,22 @@ export class Dino extends AbstractGameObject {
       this.flip();
       game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
       game.ctx.restore();
+    }
+  }
+
+  destroy(): boolean {
+    game.ctx.clearRect(this.x, this.y, this.width, this.height);
+    return true;
+  }
+
+  animate(animation: DinoAnimation = 'idle'): void {
+    this.currentAnimation = animation;
+
+    const clip = animations[animation];
+    const isOutOfRange = this.#frame < clip.from || this.#frame > clip.to;
+
+    if (isOutOfRange) {
+      this.#frame = clip.from;
     }
 
     const now = performance.now();
