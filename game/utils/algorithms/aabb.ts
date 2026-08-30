@@ -1,4 +1,4 @@
-import { GameObject } from "../../entities/abstraction/AbstractGameObject";
+import { GameObject } from "../../entities/abstraction/AnimatedGameObject";
 
 function aabb(obj1: GameObject, obj2: GameObject): boolean {
   return obj1.x < obj2.x + obj2.size &&

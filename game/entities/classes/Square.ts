@@ -1,4 +1,4 @@
-import { GameObject } from "../abstraction/AbstractGameObject";
+import { GameObject } from "../abstraction/AnimatedGameObject";
 import { SpriteSheet } from "./SpriteSheet";
 
 export class Square extends GameObject {
