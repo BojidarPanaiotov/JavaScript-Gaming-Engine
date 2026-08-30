@@ -1,4 +1,4 @@
-import { AbstractGameObject, IGameObject } from "./AbstractGameObject";
+import { AbstractGameObject, IGameObject } from "./AnimatedGameObject";
 
 export interface ICollider {
   x: number;

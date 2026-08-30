@@ -1,4 +1,4 @@
-import { IGameObject } from "../abstraction/AbstractGameObject";
+import { IGameObject } from "../abstraction/AnimatedGameObject";
 
 export class Controller {
   keys = new Set<string>();

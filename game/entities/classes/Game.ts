@@ -1,6 +1,6 @@
 import {GameMap} from '../abstraction/GameMap'
 import { GAME } from '../../constants/constants';
-import { IGameObject } from '../abstraction/AbstractGameObject';
+import { IGameObject } from '../abstraction/AnimatedGameObject';
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -13,7 +13,7 @@ export class Game extends GameMap {
     height: number = 400, 
     fullscreen: boolean = true, 
     border: boolean = true,
-    spacing: number = 32
+    spacing: number = 8
   ) {
     super();
     
