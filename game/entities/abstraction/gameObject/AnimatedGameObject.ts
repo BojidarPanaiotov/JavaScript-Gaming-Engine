@@ -1,5 +1,5 @@
 import { GameObject, IGameObject } from "./GameObject";
-import { ISpriteSheet } from "../classes/SpriteSheet";
+import { ISpriteSheet } from "../../classes/SpriteSheet";
 
 type AnimationClip = {
   from: number;

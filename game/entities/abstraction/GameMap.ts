@@ -1,4 +1,4 @@
-import { GameObject } from "./AnimatedGameObject";
+import { GameObject } from "./gameObject/AnimatedGameObject";
 export abstract class GameMap {
   gameObjects: GameObject[] = [];
 

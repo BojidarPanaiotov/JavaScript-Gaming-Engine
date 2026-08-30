@@ -1,5 +1,5 @@
 import { generateRandomNumber } from "../../utils/algorithms/utils";
-import { AbstractGameObject } from "../abstraction/AnimatedGameObject";
+import { AbstractGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 import { SpriteSheet } from "./SpriteSheet";
 
 export type GameObjectCtor<T extends AbstractGameObject> = new (

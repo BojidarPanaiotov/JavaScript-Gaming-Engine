@@ -1,4 +1,4 @@
-import { IGameObject } from "../abstraction/AnimatedGameObject";
+import { IGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 import { AbstractCollider } from "../abstraction/AbstractCollider";
 import * as utils from '../../utils/algorithms/aabb';
 

@@ -1,4 +1,4 @@
-import { AnimatedGameObject } from "../abstraction/AnimatedGameObject";
+import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 
 export class Dino extends AnimatedGameObject {
   update(x: number, y: number): void {
