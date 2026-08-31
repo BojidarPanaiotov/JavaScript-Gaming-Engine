@@ -1,8 +1,11 @@
 import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
+import { Item } from "./items/Item";
 
 export class Dino extends AnimatedGameObject {
+  public itemCollection: Item[] = [];
+
   update(x: number, y: number): void {
-    const doesMoved = x !== 0 || y !== 0;
+    super.update(x, y);
 
     if (x < 0) {
       this.mirrored = true;
@@ -10,8 +13,6 @@ export class Dino extends AnimatedGameObject {
       this.mirrored = false;
     }
 
-    this.currentAnimation = doesMoved ? 'walk' : 'idle';
-    this.x += x;
-    this.y += y;
+    this.currentAnimation = x !== 0 || y !== 0 ? "walk" : "idle";
   }
 }

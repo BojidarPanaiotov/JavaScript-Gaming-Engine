@@ -37,7 +37,11 @@ export abstract class GameObject implements IGameObject {
   }
 
   abstract render(): void
-  abstract update(x: number, y: number): void
+
+  update(x: number, y: number): void {
+    this.x += x;
+    this.y += y;
+  }
 
   destroy(): boolean {
     const index = game.gameObjects.indexOf(this);
