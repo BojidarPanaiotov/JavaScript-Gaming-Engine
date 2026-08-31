@@ -1,8 +1,8 @@
 import { generateRandomNumber } from "../../utils/algorithms/utils";
-import { AbstractGameObject } from "../abstraction/gameObject/AnimatedGameObject";
+import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 import { SpriteSheet } from "./SpriteSheet";
 
-export type GameObjectCtor<T extends AbstractGameObject> = new (
+export type GameObjectCtor<T extends AnimatedGameObject> = new (
   x: number,
   y: number,
   width: number,
@@ -10,7 +10,7 @@ export type GameObjectCtor<T extends AbstractGameObject> = new (
   spriteSheet?: SpriteSheet,
 ) => T;
 
-export class Spawner<T extends AbstractGameObject> {
+export class Spawner<T extends AnimatedGameObject> {
   #spawnedObjects: T[] = [];
 
   constructor(
