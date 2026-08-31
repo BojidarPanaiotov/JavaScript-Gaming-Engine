@@ -36,6 +36,23 @@ implements IAnimatedGameObject {
     this.animations = animations;
     this.spriteSheet = spriteSheet;
   }
+  
+  render(): void {
+    if (!this.spriteSheet) {
+      return;
+    }
+
+    const bitmap = this.spriteSheet.frames[this.frame];
+    if (!bitmap) {
+      return;
+    }
+
+    game.ctx.save();
+    game.ctx.imageSmoothingEnabled = false;
+    this.flip();
+    game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
+    game.ctx.restore();
+  }
 
   animate(): void {
     const clip = this.animations[this.currentAnimation];

@@ -14,21 +14,4 @@ export class Dino extends AnimatedGameObject {
     this.x += x;
     this.y += y;
   }
-
-  render(): void {
-    if (!this.spriteSheet) {
-      return;
-    }
-
-    const bitmap = this.spriteSheet.frames[this.frame];
-    if (!bitmap) {
-      return;
-    }
-
-    game.ctx.save();
-    game.ctx.imageSmoothingEnabled = false;
-    this.flip();
-    game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
-    game.ctx.restore();
-  }
 }
