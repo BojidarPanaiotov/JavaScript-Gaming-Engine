@@ -1,3 +1,5 @@
+import { ICollider } from "../AbstractCollider";
+import { Collider } from "../../classes/Collider";
 export interface IGameObject {
   x: number;
   y: number;
@@ -13,17 +15,23 @@ export abstract class GameObject implements IGameObject {
   public y: number;
   public width: number;
   public height: number;
+  public collider?: ICollider;
 
   constructor(
     x: number, 
     y: number, 
     width: number, 
-    height: number
+    height: number,
+    collider?: boolean
 ) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
+
+    if (collider) {
+      this.collider = new Collider(this);
+    }
 
     game.gameObjects.push(this);
   }

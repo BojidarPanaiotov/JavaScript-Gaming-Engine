@@ -1,36 +1,49 @@
-import { AbstractGameObject, IGameObject } from "./gameObject/AnimatedGameObject";
+import { IGameObject } from "./gameObject/GameObject";
+import { algorithms } from "../../utils/algorithms/aabb";
 
 export interface ICollider {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  currentGameObject: IGameObject;
+  gameObject: IGameObject;
+  collides(obj: IGameObject): boolean;
+  collidesAny(objs: IGameObject[]): IGameObject[];
   renderBorder(): void;
-  collideSingle(obj: IGameObject): boolean;
 }
 
-export abstract class AbstractCollider implements ICollider {
-  public x;
-  public y;
-  public width;
-  public height;
-  public currentGameObject: IGameObject;
+export abstract class BaseCollider implements ICollider {
+  public gameObject: IGameObject;
 
-  constructor(x: number, y: number, width: number, height: number, gameObject: IGameObject) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.currentGameObject = gameObject;
+  constructor(gameObject: IGameObject) {
+    this.gameObject = gameObject;
   }
 
   static renderAllBorders(): void {
     game.gameObjects.forEach(obj => {
-      obj.collider.renderBorder();
+      obj.collider?.renderBorder();
     });
   }
 
-  abstract renderBorder(): void;
-  abstract collideSingle(obj: IGameObject): boolean;
+  collides(obj: IGameObject): boolean {
+    return algorithms.aabb(this.gameObject, obj);
+  }
+
+  collidesAny(objs: IGameObject[]): IGameObject[] {
+    let result: IGameObject[] = [];
+
+    objs.some(obj => {
+      if (this.gameObject === obj) {
+        return;
+      }
+      const collides = algorithms.aabb(this.gameObject, obj);
+      if (collides) {
+        result.push(obj);
+      }
+    })
+
+    return result;
+  }
+
+  renderBorder(): void {
+    game.ctx.strokeStyle = 'blue';
+    game.ctx.lineWidth = 1;
+    game.ctx.strokeRect(this.gameObject.x, this.gameObject.y, this.gameObject.width, this.gameObject.height);
+  }
 }
