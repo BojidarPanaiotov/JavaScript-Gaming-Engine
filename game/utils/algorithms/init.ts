@@ -4,6 +4,7 @@ import { SpriteSheet } from "../../entities/classes/SpriteSheet";
 function initSpriteSheets() {
   const spriteSheets = {
     dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24, 24),
+    heart: new SpriteSheet('./game/assets/heart.png', true, 16, 16),
   }
 
   return spriteSheets;
