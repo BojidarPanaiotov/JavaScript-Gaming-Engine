@@ -21,7 +21,7 @@ implements IAnimatedGameObject {
   animations: Animations;
   currentAnimation: string = 'idle';
   frame = 0;
-  protected mirrored: boolean = false;
+  mirrored: boolean = false;
   #lastTimeFrameChanged = 0;
   spriteSheet: ISpriteSheet;
 
