@@ -38,6 +38,16 @@ implements IAnimatedGameObject {
     this.animations = animations;
     this.spriteSheet = spriteSheet;
   }
+
+  update(x: number, y: number): void {
+    super.update(x, y);
+
+    if (x < 0) {
+      this.mirrored = true;
+    } else if (x > 0) {
+      this.mirrored = false;
+    }
+  }
   
   render(): void {
     if (!this.spriteSheet) {
