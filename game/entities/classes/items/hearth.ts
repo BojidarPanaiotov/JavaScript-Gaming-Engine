@@ -1,4 +1,4 @@
 import { AnimatedGameObject } from "../../abstraction/gameObject/AnimatedGameObject";
 
-export class Item extends AnimatedGameObject {
+export class Hearth extends AnimatedGameObject {
 }

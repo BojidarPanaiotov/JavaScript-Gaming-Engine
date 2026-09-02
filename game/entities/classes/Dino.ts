@@ -1,5 +1,5 @@
 import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
-import { Item } from "./items/Item";
+import { Item } from "./items/hearth";
 
 export class Dino extends AnimatedGameObject {
   public itemCollection: Item[] = [];
