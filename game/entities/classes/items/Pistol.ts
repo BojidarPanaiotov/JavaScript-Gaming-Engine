@@ -17,5 +17,11 @@ export class Pistol extends AnimatedGameObject {
   ) {
     super(x, y, width, height, animations, spriteSheet, collider);
     this.totalAmmo = totalAmmo;
+    window.addEventListener("mousedown", () => this.fire());
+  }
+
+  fire(): void {
+    this.currentAnimation = "fire";
+    this.frame = this.animations.fire.from;
   }
 }
