@@ -5,11 +5,13 @@ type AnimationClip = {
   from: number;
   to: number;
   fps: number;
+  loop?: boolean;
 }
 
-type Animations = Record<string, AnimationClip>;
+export type Animations = Record<string, AnimationClip>;
 
 export interface IAnimatedGameObject extends IGameObject {
+  currentAnimation: string;
   animate(): void;
   flip(): void;
 }
@@ -69,7 +71,12 @@ implements IAnimatedGameObject {
     if (timeSinceLastFrameChanged >= timeToNextFrame) {
       this.frame++;
       if (this.frame > clip.to) {
-        this.frame = clip.from;
+        if (clip.loop === false) {
+          this.currentAnimation = "idle";
+          this.frame = this.animations.idle?.from ?? clip.from;
+        } else {
+          this.frame = clip.from;
+        }
       }
       this.#lastTimeFrameChanged = now;
     }
