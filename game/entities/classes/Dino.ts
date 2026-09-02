@@ -1,8 +1,8 @@
 import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
-import { Item } from "./items/hearth";
+import { IGameObject } from "../abstraction/gameObject/GameObject";
 
 export class Dino extends AnimatedGameObject {
-  public itemCollection: Item[] = [];
+  public itemCollection: IGameObject[] = [];
 
   update(x: number, y: number): void {
     super.update(x, y);

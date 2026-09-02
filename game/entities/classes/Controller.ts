@@ -1,10 +1,10 @@
-import { IGameObject } from "../abstraction/gameObject/GameObject";
+import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 
 export class Controller {
   keys = new Set<string>();
-  gameObject: IGameObject;
+  gameObject: IAnimatedGameObject;
 
-  constructor(gameObject: IGameObject) {
+  constructor(gameObject: IAnimatedGameObject) {
     this.bindKeyDownEvent();
     this.bindKeyUpEvent();
     this.gameObject = gameObject;
@@ -22,7 +22,7 @@ export class Controller {
     });
   }
 
-  activate(speed: number = 1): void {
+  move(speed: number = 1): void {
     let x = 0;
     let y = 0;
 
