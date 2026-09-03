@@ -1,5 +1,6 @@
 import { ICollider } from "../AbstractCollider";
 import { Collider } from "../../classes/Collider";
+
 export interface IGameObject {
   x: number;
   y: number;
