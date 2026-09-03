@@ -76,13 +76,15 @@ implements IAnimatedGameObject {
     const now = performance.now();
     const timeSinceLastFrameChanged = now - this.#lastTimeFrameChanged;
     const timeToNextFrame = 1000 / clip.fps;
+    const shouldChangeFrame = timeSinceLastFrameChanged >= timeToNextFrame
 
-    if (timeSinceLastFrameChanged >= timeToNextFrame) {
+    if (shouldChangeFrame) {
       this.frame++;
+
       if (this.frame > clip.to) {
         if (clip.loop === false) {
           this.currentAnimation = "idle";
-          this.frame = this.animations.idle?.from ?? clip.from;
+          this.frame = this.animations.idle.from ?? clip.from;
         } else {
           this.frame = clip.from;
         }
