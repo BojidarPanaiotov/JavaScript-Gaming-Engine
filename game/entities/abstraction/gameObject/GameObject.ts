@@ -7,7 +7,7 @@ export interface IGameObject {
   width: number;
   height: number;
   update(x: number, y: number): void;
-  render(): void;
+  render(ctx: CanvasRenderingContext2D): void;
   destroy(): boolean;
 }
 
@@ -37,7 +37,7 @@ export abstract class GameObject implements IGameObject {
     game.gameObjects.push(this);
   }
 
-  abstract render(): void
+  abstract render(ctx: CanvasRenderingContext2D): void
 
   update(x: number, y: number): void {
     this.x += x;

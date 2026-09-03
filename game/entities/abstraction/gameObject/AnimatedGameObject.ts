@@ -49,7 +49,7 @@ implements IAnimatedGameObject {
     }
   }
   
-  render(): void {
+  render(ctx: CanvasRenderingContext2D): void {
     if (!this.spriteSheet) {
       return;
     }
@@ -59,11 +59,11 @@ implements IAnimatedGameObject {
       return;
     }
 
-    game.ctx.save();
-    game.ctx.imageSmoothingEnabled = false;
+    ctx.save();
+    ctx.imageSmoothingEnabled = false;
     this.flip();
-    game.ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
-    game.ctx.restore();
+    ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
+    ctx.restore();
   }
 
   animate(): void {
