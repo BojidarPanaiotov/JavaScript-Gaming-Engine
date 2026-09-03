@@ -58,7 +58,9 @@ export class Pistol extends AnimatedGameObject {
         bullet.update();
         bullet.render(ctx);
         bullet.animate();
-        bullet.collider?.renderBorder();
+        if (bullet.active) {
+          bullet.collider?.renderBorder();
+        }
     });
   }
 }

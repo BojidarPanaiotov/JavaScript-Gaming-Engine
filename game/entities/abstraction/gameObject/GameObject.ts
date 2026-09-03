@@ -6,6 +6,7 @@ export interface IGameObject {
   y: number;
   width: number;
   height: number;
+  collider?: ICollider;
   update(x: number, y: number): void;
   render(ctx: CanvasRenderingContext2D): void;
   destroy(): boolean;
