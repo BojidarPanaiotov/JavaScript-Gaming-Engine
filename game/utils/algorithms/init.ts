@@ -14,8 +14,7 @@ function initAnimationClips() {
       fire: { from: 0, to: 11, fps: 60, loop: false },
     },
     bullet: {
-      idle: { from: 0, to: 0, fps: 0 },
-      fire: { from: 0, to: 7, fps: 30, },
+      idle: { from: 0, to: 7, fps: 30 }
     }
   }
 
