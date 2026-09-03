@@ -6,21 +6,20 @@ export class SpriteSheet implements ISpriteSheet {
   protected image: HTMLImageElement;
   frames: ImageBitmap[] = [];
   #path: string;
-  #isLoaded = false;
   #loadPromise: Promise<boolean> | null = null;
 
-  constructor(path: string, preload: boolean = true, frameWidth: number, frameHeight: number) {
+  constructor(
+    path: string, 
+    preload: boolean = true, 
+    totalFrames: number
+  ) {
     this.#path = path;
     this.image = new Image();
 
     if (preload) {
       this.#load();
-      this.#getFrames(frameWidth, frameHeight);
+      this.#getFrames(totalFrames);
     }
-  }
-
-  get isLoaded(): boolean {
-    return this.#isLoaded;
   }
 
   #load(): Promise<boolean> {
@@ -30,12 +29,10 @@ export class SpriteSheet implements ISpriteSheet {
 
     this.#loadPromise = new Promise((resolve) => {
       this.image.onload = () => {
-        this.#isLoaded = true;
         resolve(true);
       };
 
       this.image.onerror = () => {
-        this.#isLoaded = false;
         this.#loadPromise = null;
         resolve(false);
       };
@@ -46,7 +43,10 @@ export class SpriteSheet implements ISpriteSheet {
     return this.#loadPromise;
   }
 
-  #getFrames(frameWidth: number, frameHeight: number): Promise<ImageBitmap[]> {
+  #getFrames(totalFrames: number): Promise<ImageBitmap[]> {
+    const frameWidth = this.image.width / totalFrames;
+    const frameHeight = this.image.height;
+
     return this.#load().then(async (loaded) => {
       if (!loaded) {
         return [];

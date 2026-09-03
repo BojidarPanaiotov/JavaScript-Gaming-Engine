@@ -5,5 +5,5 @@ export const GAME = {
   COORDINATE_SYSTEM_COLOR: 'blue',
   // Errors
   BROKEN_CANVAS: "2D canvas context is not available",
-  BROKEN_IMAGE: "Failed to load image check path: {path}"
+  BROKEN_SPRITESHEET: "Frame size {frameWidth}x{frameHeight} is larger than spritesheet {imageWidth}x{imageHeight}"
 }

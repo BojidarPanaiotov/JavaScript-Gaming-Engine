@@ -24,10 +24,10 @@ function initAnimationClips() {
 
 function initSpriteSheets() {
   const spriteSheets = {
-    dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24, 24),
-    heart: new SpriteSheet('./game/assets/heart.png', true, 16, 16),
-    pistol: new SpriteSheet('./game/assets/pistol.png', true, 64, 32),
-    bullet: new SpriteSheet('./game/assets/bullet.png', true, 64, 32),
+    dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24),
+    heart: new SpriteSheet('./game/assets/heart.png', true, 4),
+    pistol: new SpriteSheet('./game/assets/pistol.png', true, 12),
+    bullet: new SpriteSheet('./game/assets/bullet.png', true, 8),
   }
 
   return spriteSheets;
