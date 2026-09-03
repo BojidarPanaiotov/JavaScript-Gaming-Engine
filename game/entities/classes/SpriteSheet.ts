@@ -5,7 +5,7 @@ export interface ISpriteSheet {
 export class SpriteSheet implements ISpriteSheet {
   protected image: HTMLImageElement;
   frames: ImageBitmap[] = [];
-  #path: string;
+  totalFrames: number;
   #loadPromise: Promise<boolean> | null = null;
 
   constructor(
@@ -13,12 +13,12 @@ export class SpriteSheet implements ISpriteSheet {
     preload: boolean = true, 
     totalFrames: number
   ) {
-    this.#path = path;
     this.image = new Image();
+    this.image.src = path;
+    this.totalFrames = totalFrames;
 
     if (preload) {
       this.#load();
-      this.#getFrames(totalFrames);
     }
   }
 
@@ -29,6 +29,7 @@ export class SpriteSheet implements ISpriteSheet {
 
     this.#loadPromise = new Promise((resolve) => {
       this.image.onload = () => {
+        this.#getFrames(this.totalFrames);
         resolve(true);
       };
 
@@ -36,8 +37,6 @@ export class SpriteSheet implements ISpriteSheet {
         this.#loadPromise = null;
         resolve(false);
       };
-
-      this.image.src = this.#path;
     });
 
     return this.#loadPromise;
