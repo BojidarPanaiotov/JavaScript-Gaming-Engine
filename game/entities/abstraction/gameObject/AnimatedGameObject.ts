@@ -21,7 +21,7 @@ implements IAnimatedGameObject {
   currentAnimation: string = 'idle';
   frame = 0;
   spriteSheet: ISpriteSheet;
-  #mirrored: boolean = false;
+  protected mirrored: boolean = false;
   #lastTimeFrameChanged = 0;
 
   constructor(
@@ -41,9 +41,9 @@ implements IAnimatedGameObject {
     super.update(x, y);
 
     if (x < 0) {
-      this.#mirrored = true;
+      this.mirrored = true;
     } else if (x > 0) {
-      this.#mirrored = false;
+      this.mirrored = false;
     }
   }
   
@@ -93,7 +93,7 @@ implements IAnimatedGameObject {
   }
 
   #flip(ctx: CanvasRenderingContext2D): void {
-    if (!this.#mirrored) {
+    if (!this.mirrored) {
       return;
     }
 
