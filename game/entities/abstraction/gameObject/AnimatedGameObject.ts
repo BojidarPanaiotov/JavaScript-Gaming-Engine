@@ -13,7 +13,6 @@ export type Animations = Record<string, AnimationClip>;
 export interface IAnimatedGameObject extends IGameObject {
   currentAnimation: string;
   animate(): void;
-  flip(): void;
 }
 
 export abstract class AnimatedGameObject extends GameObject 
@@ -21,9 +20,9 @@ implements IAnimatedGameObject {
   animations: Animations;
   currentAnimation: string = 'idle';
   frame = 0;
-  mirrored: boolean = false;
-  #lastTimeFrameChanged = 0;
   spriteSheet: ISpriteSheet;
+  #mirrored: boolean = false;
+  #lastTimeFrameChanged = 0;
 
   constructor(
     x: number, 
@@ -43,9 +42,9 @@ implements IAnimatedGameObject {
     super.update(x, y);
 
     if (x < 0) {
-      this.mirrored = true;
+      this.#mirrored = true;
     } else if (x > 0) {
-      this.mirrored = false;
+      this.#mirrored = false;
     }
   }
   
@@ -61,7 +60,7 @@ implements IAnimatedGameObject {
 
     ctx.save();
     ctx.imageSmoothingEnabled = false;
-    this.flip();
+    this.#flip(ctx);
     ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
     ctx.restore();
   }
@@ -92,16 +91,16 @@ implements IAnimatedGameObject {
     }
   }
 
-  flip(): void {
-    if (!this.mirrored) {
+  #flip(ctx: CanvasRenderingContext2D): void {
+    if (!this.#mirrored) {
       return;
     }
 
     const centerX = this.x + this.width / 2;
     const centerY = this.y + this.height / 2;
 
-    game.ctx.translate(centerX, centerY);
-    game.ctx.scale(-1, 1);
-    game.ctx.translate(-centerX, -centerY);
+    ctx.translate(centerX, centerY);
+    ctx.scale(-1, 1);
+    ctx.translate(-centerX, -centerY);
   }
 }
