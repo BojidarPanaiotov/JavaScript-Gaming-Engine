@@ -30,10 +30,9 @@ implements IAnimatedGameObject {
     width: number, 
     height: number, 
     animations: Animations,
-    spriteSheet: ISpriteSheet,
-    collider?: boolean
+    spriteSheet: ISpriteSheet
   ) {
-    super(x, y, width, height, collider);
+    super(x, y, width, height);
     this.animations = animations;
     this.spriteSheet = spriteSheet;
   }

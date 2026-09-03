@@ -14,10 +14,9 @@ export class Pistol extends AnimatedGameObject {
     height: number, 
     animations: Animations,
     spriteSheet: ISpriteSheet,
-    totalAmmo: number,
-    collider?: boolean
+    totalAmmo: number
   ) {
-    super(x, y, width, height, animations, spriteSheet, collider);
+    super(x, y, width, height, animations, spriteSheet);
     this.totalAmmo = totalAmmo;
     this.#load();
     window.addEventListener("mousedown", () => this.fire());
@@ -41,7 +40,7 @@ export class Pistol extends AnimatedGameObject {
 
   #load(): void {
     for (let i = 0; i < this.totalAmmo; i++) {
-      const bullet = new Bullet(this.x, this.y, 64, 32, globalThis.animationClips.bullet, globalThis.spriteSheets.bullet, true);
+      const bullet = new Bullet(this.x, this.y, 64, 32, globalThis.animationClips.bullet, globalThis.spriteSheets.bullet);
       this.bullets.push(bullet);
     }
   }

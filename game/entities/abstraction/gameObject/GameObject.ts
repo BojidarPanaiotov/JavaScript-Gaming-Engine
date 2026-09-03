@@ -22,17 +22,13 @@ export abstract class GameObject implements IGameObject {
     x: number, 
     y: number, 
     width: number, 
-    height: number,
-    collider?: boolean
+    height: number
 ) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-
-    if (collider) {
-      this.collider = new Collider(this);
-    }
+    this.collider = new Collider(this);
 
     game.gameObjects.push(this);
   }
