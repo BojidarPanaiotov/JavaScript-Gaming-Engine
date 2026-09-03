@@ -7,6 +7,7 @@ import { Projectile } from "../../abstraction/gameObject/Projectile";
 export class Pistol extends AnimatedGameObject {
   public totalAmmo: number = 0;
   public bullets: Projectile[] = [];
+  speed: number = 15;
 
   constructor(
     x: number, 
@@ -15,10 +16,12 @@ export class Pistol extends AnimatedGameObject {
     height: number, 
     animations: Animations,
     spriteSheet: ISpriteSheet,
-    totalAmmo: number
+    totalAmmo: number,
+    speed: number
   ) {
     super(x, y, width, height, animations, spriteSheet);
     this.totalAmmo = totalAmmo;
+    this.speed = speed;
     this.#reload();
     window.addEventListener("mousedown", () => this.#fire());
   }
@@ -37,11 +40,10 @@ export class Pistol extends AnimatedGameObject {
       return;
     }
 
-    const bulletSpeed = 1;
     const pistol = this;
 
     bullet.active = true;
-    bullet.vx = pistol.mirrored ? -bulletSpeed : bulletSpeed;
+    bullet.vx = pistol.mirrored ? -this.speed : this.speed;
     bullet.x = pistol.x + pistol.width / 2 - bullet.width / 2;
     bullet.y = pistol.y + pistol.height / 2 - bullet.height / 2;
   }
