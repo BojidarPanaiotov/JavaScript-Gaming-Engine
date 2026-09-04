@@ -95,14 +95,23 @@ implements IAnimatedGameObject {
       return;
     }
 
+    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
+
     ctx.save();
     ctx.imageSmoothingEnabled = false;
-    this.#applyMirrorTransform(ctx);
+
+    // 1. Flip the image horizontally
+    if (this.mirrored) {
+      ctx.translate(centerX, centerY);
+      ctx.scale(-1, 1);
+      ctx.translate(-centerX, -centerY);
+    }
+
+    // 2. Draw the image
     ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
     ctx.restore();
 
-    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
-
+    // 3. Draw the center origin
     if (showCenterOrigin) {
       ctx.beginPath();
       ctx.fillStyle = "red";
@@ -143,17 +152,6 @@ implements IAnimatedGameObject {
       }
       this._lastTimeFrameChanged = now;
     }
-  }
-
-  #applyMirrorTransform(ctx: CanvasRenderingContext2D): void {
-    if (!this.mirrored) {
-      return;
-    }
-
-    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
-    ctx.translate(centerX, centerY);
-    ctx.scale(-1, 1);
-    ctx.translate(-centerX, -centerY);
   }
 
   #getCenterOriginCoordinates(ctx: CanvasRenderingContext2D): { x: number, y: number } {
