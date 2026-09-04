@@ -1,23 +1,23 @@
-import { ICollider } from "../AbstractCollider";
 import { Collider } from "../../classes/Collider";
+import { ICollidable } from "../collision/AbstractCollider";
 
-export interface IGameObject {
+export interface IBaseGameObject {
   x: number;
   y: number;
   width: number;
   height: number;
-  collider?: ICollider;
+  collider: ICollidable;
   update(x: number, y: number): void;
   render(ctx: CanvasRenderingContext2D): void;
   destroy(): boolean;
 }
 
-export abstract class GameObject implements IGameObject {
+export abstract class BaseGameObject implements IBaseGameObject {
   protected _x: number;
   protected _y: number;
   protected _width: number;
   protected _height: number;
-  public collider?: ICollider;
+  public collider: ICollidable;
 
   constructor(
     x: number, 

@@ -1,4 +1,4 @@
-import { GameObject, IGameObject } from "./GameObject";
+import { GameObject, IGameObject } from "./BaseGameObject";
 import { ISpriteSheet } from "../../classes/SpriteSheet";
 
 type AnimationClip = {
