@@ -1,12 +1,12 @@
 import { Collider } from "../../classes/Collider";
-import { ICollidable } from "../collision/AbstractCollider";
+import { IBaseCollider } from "../collision/BaseCollider";
 
 export interface IBaseGameObject {
   x: number;
   y: number;
   width: number;
   height: number;
-  collider: ICollidable;
+  collider: IBaseCollider;
   update(x: number, y: number): void;
   render(ctx: CanvasRenderingContext2D): void;
   destroy(): boolean;
@@ -17,7 +17,7 @@ export abstract class BaseGameObject implements IBaseGameObject {
   protected _y: number;
   protected _width: number;
   protected _height: number;
-  public collider: ICollidable;
+  public collider: IBaseCollider;
 
   constructor(
     x: number, 

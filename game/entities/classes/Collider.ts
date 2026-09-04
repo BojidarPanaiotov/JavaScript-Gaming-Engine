@@ -1,4 +1,4 @@
-import { BaseCollider } from "../abstraction/collision/AbstractCollider";
+import { BaseCollider } from "../abstraction/collision/BaseCollider";
 
 export class Collider extends BaseCollider {
 

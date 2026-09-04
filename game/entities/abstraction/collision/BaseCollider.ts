@@ -1,17 +1,17 @@
-import { IGameObject } from "./gameObject/GameObject";
-import { algorithms } from "../../utils/algorithms/aabb";
+import { IBaseGameObject } from "../gameObject/BaseGameObject";
+import { algorithms } from "../../../utils/algorithms/aabb";
 
-export interface ICollider {
-  gameObject: IGameObject;
-  collides(obj: IGameObject): boolean;
-  collidesAny(objs: IGameObject[]): IGameObject[];
+export interface IBaseCollider {
+  gameObject: IBaseGameObject;
+  collides(obj: IBaseGameObject): boolean;
+  collidesAny(objs: IBaseGameObject[]): IBaseGameObject[];
   renderBorder(): void;
 }
 
-export abstract class BaseCollider implements ICollider {
-  public gameObject: IGameObject;
+export abstract class BaseCollider implements IBaseCollider {
+  public gameObject: IBaseGameObject;
 
-  constructor(gameObject: IGameObject) {
+  constructor(gameObject: IBaseGameObject) {
     this.gameObject = gameObject;
   }
 
@@ -21,12 +21,12 @@ export abstract class BaseCollider implements ICollider {
     });
   }
 
-  collides(obj: IGameObject): boolean {
+  collides(obj: IBaseGameObject): boolean {
     return algorithms.aabb(this.gameObject, obj);
   }
 
-  collidesAny(objs: IGameObject[]): IGameObject[] {
-    let result: IGameObject[] = [];
+  collidesAny(objs: IBaseGameObject[]): IBaseGameObject[] {
+    let result: IBaseGameObject[] = [];
 
     objs.some(obj => {
       if (this.gameObject === obj) {
