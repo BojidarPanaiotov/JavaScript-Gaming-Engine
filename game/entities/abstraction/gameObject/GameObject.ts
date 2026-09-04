@@ -36,19 +36,11 @@ export abstract class GameObject implements IGameObject {
 
   abstract render(ctx: CanvasRenderingContext2D): void
 
+  abstract destroy(): boolean
+
   update(x: number, y: number): void {
     this.x += x;
     this.y += y;
   }
 
-  destroy(): boolean {
-    const index = game.gameObjects.indexOf(this);
-
-    if (index === -1) {
-      return false;
-    }
-  
-    game.gameObjects.splice(index, 1);
-    return true;
-  }
 }
