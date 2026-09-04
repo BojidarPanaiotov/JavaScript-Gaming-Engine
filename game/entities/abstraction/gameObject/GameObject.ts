@@ -13,10 +13,10 @@ export interface IGameObject {
 }
 
 export abstract class GameObject implements IGameObject {
-  public x: number;
-  public y: number;
-  public width: number;
-  public height: number;
+  protected _x: number;
+  protected _y: number;
+  protected _width: number;
+  protected _height: number;
   public collider?: ICollider;
 
   constructor(
@@ -25,13 +25,29 @@ export abstract class GameObject implements IGameObject {
     width: number, 
     height: number
 ) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+    this._x = x;
+    this._y = y;
+    this._width = width;
+    this._height = height;
     this.collider = new Collider(this);
 
     game.gameObjects.push(this);
+  }
+
+  public get x(): number {
+    return this._x;
+  }
+
+  public get y(): number {
+    return this._y;
+  }
+
+  public get width(): number {
+    return this._width;
+  }
+
+  public get height(): number {
+    return this._height;
   }
 
   abstract render(ctx: CanvasRenderingContext2D): void
@@ -39,8 +55,8 @@ export abstract class GameObject implements IGameObject {
   abstract destroy(): boolean
 
   update(x: number, y: number): void {
-    this.x += x;
-    this.y += y;
+    this._x += x;
+    this._y += y;
   }
 
 }
