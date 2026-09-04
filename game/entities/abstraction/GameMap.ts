@@ -1,6 +1,7 @@
-import { GameObject } from "./gameObject/AnimatedGameObject";
+import { BaseGameObject } from "./gameObject/BaseGameObject";
+
 export abstract class GameMap {
-  gameObjects: GameObject[] = [];
+  gameObjects: BaseGameObject[] = [];
 
   constructor() {
 
