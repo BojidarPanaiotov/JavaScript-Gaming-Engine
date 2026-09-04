@@ -8,13 +8,6 @@ function initAnimationClips() {
       walk: { from: 4, to: 7, fps: 6 },
       run: { from: 8, to: 11, fps: 6 },
       attack: { from: 12, to: 15, fps: 6 },
-    },
-    pistol: {
-      idle: { from: 0, to: 0, fps: 0 },
-      fire: { from: 0, to: 11, fps: 60, loop: false },
-    },
-    bullet: {
-      idle: { from: 0, to: 7, fps: 30 }
     }
   }
 
@@ -23,10 +16,7 @@ function initAnimationClips() {
 
 function initSpriteSheets() {
   const spriteSheets = {
-    dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24),
-    heart: new SpriteSheet('./game/assets/heart.png', true, 4),
-    pistol: new SpriteSheet('./game/assets/pistol.png', true, 12),
-    bullet: new SpriteSheet('./game/assets/bullet.png', true, 8),
+    dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24)
   }
 
   return spriteSheets;
