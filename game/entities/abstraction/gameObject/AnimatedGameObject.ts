@@ -36,6 +36,7 @@ implements IAnimatedGameObject {
   protected _mirrored: boolean = false;
   protected _frame: number = 0;
   protected _lastTimeFrameChanged: number = 0;
+  public rotationInDegrees: number = 0;
 
   constructor(
     x: number, 
@@ -108,6 +109,7 @@ implements IAnimatedGameObject {
     }
 
     // 2. Draw the image
+    this.#rotateObject(ctx);
     ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
     ctx.restore();
 
@@ -160,4 +162,11 @@ implements IAnimatedGameObject {
 
     return { x: centerX, y: centerY };
   } 
+
+  #rotateObject (ctx: CanvasRenderingContext2D): void {
+    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
+    ctx.translate(centerX, centerY);
+    ctx.rotate(this.rotationInDegrees * Math.PI / 180);
+    ctx.translate(-centerX, -centerY);
+  }
 }
