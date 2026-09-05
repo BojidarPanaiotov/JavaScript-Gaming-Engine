@@ -2,8 +2,17 @@ import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject
 import { Health, renderHealth } from "../interfaces/Health";
 
 export class Dino extends AnimatedGameObject implements Health {
-  health: number = 100;
+  private _health: number = 100;
   maxHealth: number = 100;
+
+  get health(): number {
+    return this._health;
+  }
+  set health(value: number) {
+    if (value < 0) return;
+
+    this._health = value;
+  }
 
   update(x: number, y: number): void {
     if (this.health <= 0) {
