@@ -1,13 +1,13 @@
 import {GameMap} from '../abstraction/GameMap'
 import { GAME } from '../../constants/constants';
-import { AnimatedGameObject } from '../abstraction/gameObject/AnimatedGameObject';
+import { BaseGameObject } from '../abstraction/gameObject/BaseGameObject';
 
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   border: boolean;
   spacing: number;
-  gameObjects: AnimatedGameObject[] = [];
+  gameObjects: BaseGameObject[] = [];
 
   constructor(
     width: number = 800, 

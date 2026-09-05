@@ -52,7 +52,13 @@ export abstract class BaseGameObject implements IBaseGameObject {
 
   abstract render(ctx: CanvasRenderingContext2D): void
 
-  abstract destroy(): boolean
+  destroy(): boolean {
+    const index = game.gameObjects.indexOf(this);
+    if (index !== -1) {
+      game.gameObjects.splice(index, 1);
+    }
+    return true;
+  }
 
   update(x: number, y: number): void {
     this._x += x;

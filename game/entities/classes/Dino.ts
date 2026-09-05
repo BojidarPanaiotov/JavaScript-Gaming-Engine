@@ -16,12 +16,4 @@ export class Dino extends AnimatedGameObject implements Health {
     super.render(ctx, showCenterOrigin);
     renderHealth(ctx, this);
   }
-
-  destroy(): boolean {
-    const i = game.gameObjects.indexOf(this);
-    if (i !== -1) {
-      game.gameObjects.splice(i, 1);
-    }
-    return true;
-  }
 }
