@@ -15,12 +15,6 @@ export abstract class BaseCollider implements IBaseCollider {
     this.gameObject = gameObject;
   }
 
-  static renderAllBorders(): void {
-    game.gameObjects.forEach(obj => {
-      obj.collider?.renderBorder();
-    });
-  }
-
   collides(obj: IBaseGameObject): boolean {
     return algorithms.aabb(this.gameObject, obj);
   }
