@@ -1,4 +1,3 @@
-import { init } from 	"./game/utils/algorithms/init";
 import { Dino } from "./game/entities/classes/Dino";
 import { Controller } from "./game/entities/classes/Controller";
 
