@@ -1,7 +1,10 @@
-import { AnimatedGameObject, AnimationMap } from "../abstraction/gameObject/AnimatedGameObject";
-import { ISpriteSheet } from "./SpriteSheet";
+import { AnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
+import { Health, renderHealth } from "../interfaces/Health";
 
-export class Dino extends AnimatedGameObject {
+export class Dino extends AnimatedGameObject implements Health {
+  health: number = 100;
+  maxHealth: number = 100;
+
   update(x: number, y: number): void {
     const isMoving = x !== 0 || y !== 0;
 
@@ -9,7 +12,16 @@ export class Dino extends AnimatedGameObject {
     this._currentAnimation = isMoving ? "walk" : "idle";
   }
 
+  render(ctx: CanvasRenderingContext2D, showCenterOrigin?: boolean): void {
+    super.render(ctx, showCenterOrigin);
+    renderHealth(ctx, this);
+  }
+
   destroy(): boolean {
-    return false;
+    const i = game.gameObjects.indexOf(this);
+    if (i !== -1) {
+      game.gameObjects.splice(i, 1);
+    }
+    return true;
   }
 }
