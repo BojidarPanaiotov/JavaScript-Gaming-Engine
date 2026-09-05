@@ -14,7 +14,7 @@ export class SpriteSheet implements ISpriteSheet {
     totalFrames: number
   ) {
     this.image = new Image();
-    this.image.src = path;
+    this.image.src = `${path}.png`;
     this.totalFrames = totalFrames;
 
     if (preload) {

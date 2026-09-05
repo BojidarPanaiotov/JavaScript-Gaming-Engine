@@ -14,18 +14,28 @@ function initAnimationClips() {
   return animationClips;
 }
 
+export type AnimationClips = ReturnType<typeof initAnimationClips>;
+
 function initSpriteSheets() {
   const spriteSheets = {
-    dino: new SpriteSheet('./game/assets/dino-walk.png', true, 24)
+    dino: {
+      blue: new SpriteSheet('./game/assets/dino/blue', true, 24),
+      green: new SpriteSheet('./game/assets/dino/green', true, 24),
+      red: new SpriteSheet('./game/assets/dino/red', true, 24),
+      yellow: new SpriteSheet('./game/assets/dino/yellow', true, 24),
+    },
+    enemy: new SpriteSheet('./game/assets/enemy/enemy.png', true, 24),
   }
 
   return spriteSheets;
 }
 
+export type SpriteSheets = ReturnType<typeof initSpriteSheets>;
+
 export function init() {
   const game = new Game();
   globalThis.game = game;
-  globalThis.spriteSheets = initSpriteSheets();
-  globalThis.animationClips = initAnimationClips();
+  globalThis.spriteSheets = initSpriteSheets() as SpriteSheets;
+  globalThis.animationClips = initAnimationClips() as AnimationClips;
   game.start();
 }
