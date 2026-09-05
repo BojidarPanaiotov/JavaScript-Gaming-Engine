@@ -1,20 +1,20 @@
 import {GameMap} from '../abstraction/GameMap'
 import { GAME } from '../../constants/constants';
-import { IGameObject } from '../abstraction/gameObject/BaseGameObject';
+import { AnimatedGameObject } from '../abstraction/gameObject/AnimatedGameObject';
 
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   border: boolean;
   spacing: number;
-  gameObjects: IGameObject[] = [];
+  gameObjects: AnimatedGameObject[] = [];
 
   constructor(
     width: number = 800, 
     height: number = 400, 
     fullscreen: boolean = true, 
     border: boolean = true,
-    spacing: number = 8
+    spacing: number = 0
   ) {
     super();
     
