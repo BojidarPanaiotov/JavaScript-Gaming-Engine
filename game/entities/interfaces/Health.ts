@@ -9,7 +9,7 @@ ctx: CanvasRenderingContext2D,
 obj: Health & { x: number; y: number; width: number }
 ): void {
     const barWidth = obj.width;
-    const barHeight = 8;
+    const barHeight = 16;
     const x = obj.x;
     const y = obj.y - barHeight - 10;
     const healthRatio = Math.max(0, Math.min(1, obj.health / obj.maxHealth));
@@ -34,5 +34,11 @@ obj: Health & { x: number; y: number; width: number }
     ctx.lineWidth = 1;
     // Border of the health
     ctx.strokeRect(x, y, barWidth, barHeight);
+    // Text of health in the middle
+    ctx.font = "14px sans-serif";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(obj.health.toFixed(0).toString(), x + barWidth / 2, y + barHeight / 2);
     ctx.restore();
 }
