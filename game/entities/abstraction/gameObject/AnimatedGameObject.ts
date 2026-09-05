@@ -26,6 +26,7 @@ export interface IAnimatedGameObject extends IBaseGameObject {
   frame: number;
   lastTimeFrameChanged: number;
   animate(): void;
+  tick(ctx: CanvasRenderingContext2D): void;
 }
 
 export abstract class AnimatedGameObject extends BaseGameObject 
@@ -154,6 +155,11 @@ implements IAnimatedGameObject {
       }
       this._lastTimeFrameChanged = now;
     }
+  }
+
+  tick(ctx: CanvasRenderingContext2D): void {
+    this.animate();
+    this.render(ctx, true);
   }
 
   #getCenterOriginCoordinates(ctx: CanvasRenderingContext2D): { x: number, y: number } {
