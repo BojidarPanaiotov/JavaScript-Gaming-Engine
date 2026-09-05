@@ -2,12 +2,14 @@ import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObjec
 
 export class Controller {
   keys = new Set<string>();
-  gameObject: IAnimatedGameObject;
+  gameObjects: IAnimatedGameObject[];
 
-  constructor(gameObject: IAnimatedGameObject) {
+  constructor(gameObject: IAnimatedGameObject);
+  constructor(gameObjects: IAnimatedGameObject[]);
+  constructor(gameObject: IAnimatedGameObject | IAnimatedGameObject[]) {
     this.bindKeyDownEvent();
     this.bindKeyUpEvent();
-    this.gameObject = gameObject;
+    this.gameObjects = Array.isArray(gameObject) ? gameObject : [gameObject];
   }
 
   bindKeyDownEvent(): void {
@@ -39,6 +41,8 @@ export class Controller {
       y += speed;
     }
 
-    this.gameObject.update(x, y);
+    this.gameObjects.forEach((gameObject) => {
+      gameObject.update(x, y);
+    });
   }
 }
