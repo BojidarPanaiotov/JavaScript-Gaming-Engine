@@ -6,9 +6,12 @@ export class Dino extends AnimatedGameObject implements Health {
   maxHealth: number = 100;
 
   update(x: number, y: number): void {
-    const isMoving = x !== 0 || y !== 0;
-
+    if (this.health <= 0) {
+      this._currentAnimation = "die";
+      return;
+    }
     super.update(x, y);
+    const isMoving = x !== 0 || y !== 0;
     this._currentAnimation = isMoving ? "walk" : "idle";
   }
 
