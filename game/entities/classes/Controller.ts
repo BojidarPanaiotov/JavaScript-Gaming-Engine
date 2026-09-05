@@ -1,12 +1,12 @@
-import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
+import { IBaseGameObject } from "../abstraction/gameObject/BaseGameObject";
 
 export class Controller {
   keys = new Set<string>();
-  gameObjects: IAnimatedGameObject[];
+  gameObjects: IBaseGameObject[];
 
-  constructor(gameObject: IAnimatedGameObject);
-  constructor(gameObjects: IAnimatedGameObject[]);
-  constructor(gameObject: IAnimatedGameObject | IAnimatedGameObject[]) {
+  constructor(gameObject: IBaseGameObject);
+  constructor(gameObjects: IBaseGameObject[]);
+  constructor(gameObject: IBaseGameObject | IBaseGameObject[]) {
     this.bindKeyDownEvent();
     this.bindKeyUpEvent();
     this.gameObjects = Array.isArray(gameObject) ? gameObject : [gameObject];
