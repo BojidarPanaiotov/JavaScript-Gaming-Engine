@@ -127,34 +127,38 @@ implements IAnimatedGameObject {
   animate(): void {
     const clip = this.animations[this.currentAnimation];
 
-    if (!clip) {
-      return;
-    }
+    if (!clip) return;
 
     const isOutOfRange = this.frame < clip.from || this.frame > clip.to;
 
+    // 1. Reset the frame if it is out of range
     if (isOutOfRange) {
       this._frame = clip.from;
+      this._lastTimeFrameChanged = performance.now();
+      return;
     }
 
     const now = performance.now();
-    const timeSinceLastFrameChanged = now - this.lastTimeFrameChanged;
-    const timeToNextFrame = 1000 / clip.fps;
-    const shouldChangeFrame = timeSinceLastFrameChanged >= timeToNextFrame
+    
+    // 2. Check if the frame should be changed
+    if (now - this.lastTimeFrameChanged < 1000 / clip.fps) return;
 
-    if (shouldChangeFrame) {
+    // 3. Increment the frame if it is not out of range
+    if (this._frame < clip.to) {
       this._frame++;
-
-      if (this._frame > clip.to) {
-        if (clip.loop === false) {
-          this._currentAnimation = "idle";
-          this._frame = this.animations.idle.from ?? clip.from;
-        } else {
-          this._frame = clip.from;
-        }
-      }
       this._lastTimeFrameChanged = now;
+      return;
     }
+
+    // 4. Destroy the object if the animation is not looping and the current animation is "die"
+    if (clip.loop === false && this.currentAnimation === "die") {
+      this.destroy();
+      return;
+    }
+
+    // 5. Reset the frame if the animation is looping
+    this._frame = clip.from;
+    this._lastTimeFrameChanged = performance.now();
   }
 
   tick(ctx: CanvasRenderingContext2D): void {
