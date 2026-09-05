@@ -8,6 +8,7 @@ export class Dino extends AnimatedGameObject implements Health {
   get health(): number {
     return this._health;
   }
+
   set health(value: number) {
     if (value < 0) return;
 
