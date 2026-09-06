@@ -95,7 +95,7 @@ implements IAnimatedGameObject {
       return;
     }
 
-    const bitmap = this.spriteSheet.frames[this.frame];
+    const bitmap = this.spriteSheet.frames[this._frame];
     if (!bitmap) {
       return;
     }
@@ -128,11 +128,11 @@ implements IAnimatedGameObject {
   }
 
   animate(): void {
-    const clip = this.animations[this.currentAnimation];
+    const clip = this.animations[this._currentAnimation];
 
     if (!clip) return;
 
-    const isOutOfRange = this.frame < clip.from || this.frame > clip.to;
+    const isOutOfRange = this._frame < clip.from || this._frame > clip.to;
 
     // 1. Reset the frame if it is out of range
     if (isOutOfRange) {
@@ -154,7 +154,7 @@ implements IAnimatedGameObject {
     }
 
     // 4. Destroy the object if the animation is not looping and the current animation is "die"
-    if (clip.loop === false && this.currentAnimation === "die") {
+    if (clip.loop === false && this._currentAnimation === "die") {
       this.destroy();
       return;
     }
