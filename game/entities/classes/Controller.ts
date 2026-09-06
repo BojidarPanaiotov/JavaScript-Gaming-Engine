@@ -41,8 +41,11 @@ export class Controller {
       y += speed;
     }
 
-    this.gameObjects.forEach((gameObject) => {
-      gameObject.update(x, y);
-    });
+
+    if (this.keys.size) {
+      this.gameObjects.forEach((gameObject) => {
+        gameObject.update(x, y);
+      });
+    }
   }
 }

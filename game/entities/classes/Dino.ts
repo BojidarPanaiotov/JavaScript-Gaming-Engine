@@ -24,7 +24,7 @@ export class Dino extends AnimatedGameObject implements Health {
       return;
     }
 
-    super.update(x, y, degrees, x !== 0 || y !== 0 ? "walk" : animation);
+    super.update(x, y, degrees, animation);
   }
 
   render(ctx: CanvasRenderingContext2D, showCenterOrigin?: boolean): void {

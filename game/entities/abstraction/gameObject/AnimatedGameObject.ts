@@ -80,7 +80,7 @@ implements IAnimatedGameObject {
   override update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
     super.update(x, y);
 
-    this._rotationInDegrees = degrees;
+    this._rotationInDegrees += degrees;
     this._currentAnimation = animation;
 
     if (x < 0) {
