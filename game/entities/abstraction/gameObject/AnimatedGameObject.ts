@@ -25,6 +25,7 @@ export interface IAnimatedGameObject extends IBaseGameObject {
   mirrored: boolean;
   frame: number;
   lastTimeFrameChanged: number;
+  update(x: number, y: number, degrees?: number, animation?: AnimationKey): void;
   animate(): void;
   tick(ctx: CanvasRenderingContext2D): void;
 }

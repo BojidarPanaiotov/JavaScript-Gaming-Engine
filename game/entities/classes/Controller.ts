@@ -1,12 +1,13 @@
+import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
 import { IBaseGameObject } from "../abstraction/gameObject/BaseGameObject";
 
 export class Controller {
   keys = new Set<string>();
-  gameObjects: IBaseGameObject[];
+  gameObjects: IAnimatedGameObject[];
 
-  constructor(gameObject: IBaseGameObject);
-  constructor(gameObjects: IBaseGameObject[]);
-  constructor(gameObject: IBaseGameObject | IBaseGameObject[]) {
+  constructor(gameObject: IAnimatedGameObject);
+  constructor(gameObjects: IAnimatedGameObject[]);
+  constructor(gameObject: IAnimatedGameObject | IAnimatedGameObject[]) {
     this.bindKeyDownEvent();
     this.bindKeyUpEvent();
     this.gameObjects = Array.isArray(gameObject) ? gameObject : [gameObject];
@@ -27,7 +28,7 @@ export class Controller {
   move(speed: number = 1): void {
     let x = 0;
     let y = 0;
-
+    
     if (this.keys.has('ArrowRight')) {
       x += speed;
     }
@@ -41,11 +42,8 @@ export class Controller {
       y += speed;
     }
 
-
-    if (this.keys.size) {
-      this.gameObjects.forEach((gameObject) => {
-        gameObject.update(x, y);
-      });
-    }
+    this.gameObjects.forEach((gameObject) => {
+      gameObject.update(x, y, 0, x + y !== 0 ? "walk" : "idle");
+    });
   }
 }
