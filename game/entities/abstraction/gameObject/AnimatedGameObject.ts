@@ -78,9 +78,8 @@ implements IAnimatedGameObject {
     return this._lastTimeFrameChanged;
   }
 
-  override update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
+  update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
     super.update(x, y);
-
     this._rotationInDegrees += degrees;
     this._currentAnimation = animation;
 
