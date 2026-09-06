@@ -87,7 +87,7 @@ implements IAnimatedGameObject {
     }
   }
   
-  render(ctx: CanvasRenderingContext2D, showCenterOrigin: boolean = false): void {
+  render(ctx: CanvasRenderingContext2D, showCenterOrigin: boolean = true): void {
     if (!this.spriteSheet) {
       return;
     }
@@ -163,7 +163,7 @@ implements IAnimatedGameObject {
 
   tick(ctx: CanvasRenderingContext2D): void {
     this.animate();
-    this.render(ctx, true);
+    this.render(ctx);
   }
 
   #rotateObject (ctx: CanvasRenderingContext2D): void {
