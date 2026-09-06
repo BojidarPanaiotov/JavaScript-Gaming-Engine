@@ -37,7 +37,7 @@ implements IAnimatedGameObject {
   protected _mirrored: boolean = false;
   protected _frame: number = 0;
   protected _lastTimeFrameChanged: number = 0;
-  public rotationInDegrees: number = 0;
+  protected _rotationInDegrees: number = 0;
 
   constructor(
     x: number, 
@@ -77,8 +77,10 @@ implements IAnimatedGameObject {
     return this._lastTimeFrameChanged;
   }
 
-  update(x: number, y: number): void {
+  override update(x: number, y: number, degrees: number = 0): void {
     super.update(x, y);
+
+    this._rotationInDegrees = degrees;
 
     if (x < 0) {
       this._mirrored = true;
@@ -169,7 +171,7 @@ implements IAnimatedGameObject {
   #rotateObject (ctx: CanvasRenderingContext2D): void {
     const { x: centerX, y: centerY } = this.getCenterOriginCoordinates(ctx);
     ctx.translate(centerX, centerY);
-    ctx.rotate(this.rotationInDegrees * Math.PI / 180);
+    ctx.rotate(this._rotationInDegrees * Math.PI / 180);
     ctx.translate(-centerX, -centerY);
   }
 }

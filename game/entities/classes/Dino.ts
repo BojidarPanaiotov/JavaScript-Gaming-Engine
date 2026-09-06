@@ -16,12 +16,14 @@ export class Dino extends AnimatedGameObject implements Health {
   }
 
   update(x: number, y: number): void {
+  update(x: number, y: number, degrees: number = 0): void {
     if (this.health <= 0) {
       this._currentAnimation = "die";
       return;
     }
 
     super.update(x, y);
+    super.update(x, y, degrees);
 
     this._currentAnimation = x !== 0 || y !== 0 ? "walk" : "idle";
   }
