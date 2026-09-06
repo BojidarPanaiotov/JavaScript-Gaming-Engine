@@ -97,7 +97,7 @@ implements IAnimatedGameObject {
       return;
     }
 
-    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
+    const { x: centerX, y: centerY } = this.getCenterOriginCoordinates(ctx);
 
     ctx.save();
     ctx.imageSmoothingEnabled = false;
@@ -166,15 +166,8 @@ implements IAnimatedGameObject {
     this.render(ctx, true);
   }
 
-  #getCenterOriginCoordinates(ctx: CanvasRenderingContext2D): { x: number, y: number } {
-    const centerX = this.x + this.width / 2;
-    const centerY = this.y + this.height / 2;
-
-    return { x: centerX, y: centerY };
-  } 
-
   #rotateObject (ctx: CanvasRenderingContext2D): void {
-    const { x: centerX, y: centerY } = this.#getCenterOriginCoordinates(ctx);
+    const { x: centerX, y: centerY } = this.getCenterOriginCoordinates(ctx);
     ctx.translate(centerX, centerY);
     ctx.rotate(this.rotationInDegrees * Math.PI / 180);
     ctx.translate(-centerX, -centerY);
