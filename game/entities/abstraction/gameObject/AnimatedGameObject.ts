@@ -77,10 +77,11 @@ implements IAnimatedGameObject {
     return this._lastTimeFrameChanged;
   }
 
-  override update(x: number, y: number, degrees: number = 0): void {
+  override update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
     super.update(x, y);
 
     this._rotationInDegrees = degrees;
+    this._currentAnimation = animation;
 
     if (x < 0) {
       this._mirrored = true;
