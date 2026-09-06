@@ -1,3 +1,5 @@
+import { GAME } from "../../constants/constants";
+
 export interface ISpriteSheet {
   frames: ImageBitmap[];
 }
@@ -35,6 +37,7 @@ export class SpriteSheet implements ISpriteSheet {
 
       this.image.onerror = () => {
         this.#loadPromise = null;
+        throw new Error(`${GAME.ERROR_LOADING_SPRITE_SHEET} ${this.image.src}`);
         resolve(false);
       };
     });
