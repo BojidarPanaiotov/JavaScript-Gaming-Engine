@@ -10,9 +10,11 @@ export class Dino extends AnimatedGameObject implements Health {
   }
 
   set health(value: number) {
-    if (value < 0) return;
-
-    this._health = value;
+    if (value < 0) {
+      this._health = 0;
+    } else {
+      this._health = value;
+    }
   }
 
   update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
