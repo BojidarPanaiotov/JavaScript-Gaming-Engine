@@ -15,30 +15,30 @@ export class Controller {
 
   bindKeyDownEvent(): void {
     window.addEventListener('keydown', (event) => {
-      this.keys.add(event.key);
+      this.keys.add(event.key.toLowerCase());
     });
   }
 
   bindKeyUpEvent(): void {
     window.addEventListener('keyup', (event) => {
-      this.keys.delete(event.key);
+      this.keys.delete(event.key.toLowerCase());
     });
   }
 
   move(speed: number = 1): void {
     let x = 0;
     let y = 0;
-    
-    if (this.keys.has('ArrowRight')) {
-      x += speed;
+
+    if (this.keys.has('d')) {
+      x += speed; 
     }
-    if (this.keys.has('ArrowLeft')) {
+    if (this.keys.has('a')) {
       x -= speed;
     }
-    if (this.keys.has('ArrowUp')) {
+    if (this.keys.has('w')) {
       y -= speed;
     }
-    if (this.keys.has('ArrowDown')) {
+    if (this.keys.has('s')) {
       y += speed;
     }
 
