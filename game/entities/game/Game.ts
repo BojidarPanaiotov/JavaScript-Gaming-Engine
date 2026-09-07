@@ -1,6 +1,6 @@
-import {GameMap} from '../abstraction/GameMap'
+import {GameMap} from '../GameMap'
 import { GAME } from '../../constants/constants';
-import { BaseGameObject } from '../abstraction/gameObject/BaseGameObject';
+import { BaseGameObject } from '../gameObject/BaseGameObject';
 
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;

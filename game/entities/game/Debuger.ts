@@ -1,4 +1,4 @@
-import { IBaseGameObject } from "../abstraction/gameObject/BaseGameObject";
+import { IBaseGameObject } from "../gameObject/BaseGameObject";
 
 export class Debuger {
   showObjectStats(obj: IBaseGameObject): void {

@@ -1,8 +1,10 @@
-import { AnimatedGameObject, AnimationMap } from "../abstraction/gameObject/AnimatedGameObject";
-import { ISpriteSheet } from "./SpriteSheet";
+import { AnimatedGameObject, AnimationMap } from "../gameObject/AnimatedGameObject";
+import { ISpriteSheet } from "../sprites/SpriteSheet";
 import { IProjectable, IShootable } from "../interfaces/Shooting";
+import { ICollectable } from "../interfaces/Collect";
+import { Dino } from "../player/Dino";
 
-export class Pistol extends AnimatedGameObject implements IShootable {
+export class Pistol extends AnimatedGameObject implements IShootable, ICollectable {
     totalAmmo: number = 49;
     ammo: number = 7;
     bullets: IProjectable[] = [];
@@ -24,5 +26,9 @@ export class Pistol extends AnimatedGameObject implements IShootable {
 
     reload(ammo: number): void {
         throw new Error("Method not implemented.");
+    }
+
+    onCollect(collector: Dino): void {
+        collector.items.push(this);
     }
 }

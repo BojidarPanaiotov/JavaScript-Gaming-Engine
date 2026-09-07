@@ -2,6 +2,7 @@ import { GAME } from "../../constants/constants";
 
 export interface ISpriteSheet {
   frames: ImageBitmap[];
+  totalFrames: number;
 }
 
 export class SpriteSheet implements ISpriteSheet {

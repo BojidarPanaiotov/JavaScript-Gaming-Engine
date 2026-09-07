@@ -1,5 +1,5 @@
 import { Game } from "../entities/classes/Game";
-import { SpriteSheet } from "../entities/classes/SpriteSheet";
+import { SpriteSheet } from "../entities/sprites/SpriteSheet";
 
 function initAnimationClips() {
   const animationClips = {

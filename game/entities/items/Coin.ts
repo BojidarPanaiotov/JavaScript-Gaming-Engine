@@ -1,6 +1,6 @@
-import { AnimatedGameObject } from "../../abstraction/gameObject/AnimatedGameObject";
-import { ICollectable } from "../../interfaces/Collect";
-import { Dino } from "../Dino";
+import { AnimatedGameObject } from "../gameObject/AnimatedGameObject";
+import { ICollectable } from "../interfaces/Collect";
+import { Dino } from "../player/Dino";
 
 export class Coin extends AnimatedGameObject implements ICollectable {
     onCollect(collector: Dino): void {

@@ -1,4 +1,4 @@
-import { Collider } from "../../classes/Collider";
+import { Collider } from "../collision/RectangleCollider";
 import { IBaseCollider } from "../collision/BaseCollider";
 
 export interface IBaseGameObject {

@@ -1,4 +1,4 @@
-import { AnimatedGameObject, AnimationKey } from "../abstraction/gameObject/AnimatedGameObject";
+import { AnimatedGameObject, AnimationKey } from "../gameObject/AnimatedGameObject";
 import { Health, renderHealth } from "../interfaces/Health";
 import { ICollectable } from "../interfaces/Collect";
 

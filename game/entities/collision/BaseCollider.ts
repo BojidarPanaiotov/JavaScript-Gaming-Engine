@@ -1,5 +1,5 @@
 import { IBaseGameObject } from "../gameObject/BaseGameObject";
-import { algorithms } from "../../../utils/algorithms/aabb";
+import { algorithms } from "../../utils/algorithms/aabb";
 
 export interface IBaseCollider {
   gameObject: IBaseGameObject;

@@ -1,5 +1,5 @@
-import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
-import { IBaseGameObject } from "../abstraction/gameObject/BaseGameObject";
+import { IAnimatedGameObject } from "../gameObject/AnimatedGameObject";
+import { IBaseGameObject } from "../gameObject/BaseGameObject";
 
 export class Controller {
   keys = new Set<string>();

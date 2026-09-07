@@ -1,4 +1,4 @@
-import { IAnimatedGameObject } from "../abstraction/gameObject/AnimatedGameObject";
+import { IAnimatedGameObject } from "../gameObject/AnimatedGameObject";
 
 export interface IShootable extends IAnimatedGameObject {
     totalAmmo: number;
