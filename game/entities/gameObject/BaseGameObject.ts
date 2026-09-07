@@ -1,4 +1,4 @@
-import { Collider } from "../collision/RectangleCollider";
+import { RectangleCollider } from "../collision/RectangleCollider";
 import { IBaseCollider } from "../collision/BaseCollider";
 
 export interface IBaseGameObject {
@@ -29,7 +29,7 @@ export abstract class BaseGameObject implements IBaseGameObject {
     this._y = y;
     this._width = width;
     this._height = height;
-    this.collider = new Collider(this);
+    this.collider = new RectangleCollider(this);
 
     game.gameObjects.push(this);
   }

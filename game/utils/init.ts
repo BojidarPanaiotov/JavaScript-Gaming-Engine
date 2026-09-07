@@ -1,4 +1,4 @@
-import { Game } from "../entities/classes/Game";
+import { Game } from "../entities/game/Game";
 import { SpriteSheet } from "../entities/sprites/SpriteSheet";
 
 function initAnimationClips() {

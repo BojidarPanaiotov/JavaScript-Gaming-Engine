@@ -1,4 +1,4 @@
-import {GameMap} from '../GameMap'
+import {GameMap} from '../game/GameMap'
 import { GAME } from '../../constants/constants';
 import { BaseGameObject } from '../gameObject/BaseGameObject';
 
@@ -7,7 +7,7 @@ export class Game extends GameMap {
   ctx: CanvasRenderingContext2D;
   border: boolean;
   spacing: number;
-  gameObjects: BaseGameObject[] = [];
+gameObjects: BaseGameObject[] = [];
 
   constructor(
     width: number = 800, 
