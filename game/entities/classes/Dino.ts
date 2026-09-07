@@ -1,9 +1,11 @@
 import { AnimatedGameObject, AnimationKey } from "../abstraction/gameObject/AnimatedGameObject";
 import { Health, renderHealth } from "../interfaces/Health";
+import { ICollectable } from "../interfaces/Collect";
 
 export class Dino extends AnimatedGameObject implements Health {
   private _health: number = 100;
   maxHealth: number = 100;
+  items: ICollectable[] = [];
 
   get health(): number {
     return this._health;
