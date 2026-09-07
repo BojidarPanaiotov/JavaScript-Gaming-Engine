@@ -42,8 +42,10 @@ export class Controller {
       y += speed;
     }
 
+    const isMoving = x !== 0 || y !== 0;
+
     this.gameObjects.forEach((gameObject) => {
-      gameObject.update(x, y, 0, x + y !== 0 ? "walk" : "idle");
+      gameObject.update(x, y, 0, isMoving ? "walk" : "idle");
     });
   }
 }
