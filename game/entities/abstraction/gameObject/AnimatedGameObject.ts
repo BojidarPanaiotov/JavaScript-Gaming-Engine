@@ -121,7 +121,7 @@ implements IAnimatedGameObject {
     if (showCenterOrigin) {
       ctx.beginPath();
       ctx.fillStyle = "red";
-      ctx.arc(centerX, centerY, 3, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
       ctx.fill();
       ctx.closePath();
     }
