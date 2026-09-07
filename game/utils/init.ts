@@ -10,8 +10,8 @@ function initAnimationClips() {
       die: { from: 12, to: 15, fps: 6, loop: false },
     },
     pistol: {
-      idle: { from: 0, to: 0, fps: 0 },
-      fire: { from: 0, to: 11, fps: 6 }
+      idle: { from: 0, to: 7, fps: 6 },
+      static: { from: 2, to: 2, fps: 1 },
     },
     coin: {
       idle: { from: 0, to: 7, fps: 6 }
@@ -31,7 +31,7 @@ function initSpriteSheets() {
       red: new SpriteSheet('./game/assets/dino/red', true, 24),
       yellow: new SpriteSheet('./game/assets/dino/yellow', true, 24),
     },
-    pistol: new SpriteSheet('./game/assets/shooting-pistol', true, 12),
+    pistol: new SpriteSheet('./game/assets/pistol', true, 8),
     coin: new SpriteSheet('./game/assets/coin', true, 8),
   }
 

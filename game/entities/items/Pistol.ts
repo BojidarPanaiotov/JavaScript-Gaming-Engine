@@ -30,5 +30,7 @@ export class Pistol extends AnimatedGameObject implements IShootable, ICollectab
 
     onCollect(collector: Dino): void {
         collector.items.push(this);
+        this.update(collector.x, collector.y, 0, "static");
+        this.destroy();
     }
 }
