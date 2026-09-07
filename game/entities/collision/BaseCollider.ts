@@ -1,5 +1,4 @@
 import { IBaseGameObject } from "../gameObject/BaseGameObject";
-import { algorithms } from "../../utils/algorithms/aabb";
 
 export interface IBaseCollider {
   gameObject: IBaseGameObject;
@@ -15,29 +14,9 @@ export abstract class BaseCollider implements IBaseCollider {
     this.gameObject = gameObject;
   }
 
-  collides(obj: IBaseGameObject): boolean {
-    return algorithms.aabb(this.gameObject, obj);
-  }
+  abstract collides(obj: IBaseGameObject): boolean;
 
-  collidesAny(objs: IBaseGameObject[]): IBaseGameObject[] {
-    let result: IBaseGameObject[] = [];
+  abstract collidesAny(objs: IBaseGameObject[]): IBaseGameObject[];
 
-    objs.some(obj => {
-      if (this.gameObject === obj) {
-        return;
-      }
-      const collides = algorithms.aabb(this.gameObject, obj);
-      if (collides) {
-        result.push(obj);
-      }
-    })
-
-    return result;
-  }
-
-  renderBorder(): void {
-    game.ctx.strokeStyle = 'blue';
-    game.ctx.lineWidth = 1;
-    game.ctx.strokeRect(this.gameObject.x, this.gameObject.y, this.gameObject.width, this.gameObject.height);
-  }
+  abstract renderBorder(): void;
 }
