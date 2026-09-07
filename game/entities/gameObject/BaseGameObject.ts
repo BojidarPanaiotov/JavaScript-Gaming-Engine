@@ -61,8 +61,8 @@ export abstract class BaseGameObject implements IBaseGameObject {
   }
 
   update(x: number, y: number): void {
-    this._x += x;
-    this._y += y;
+    this._x = x;
+    this._y = y;
   }
 
   protected getCenterOriginCoordinates(ctx: CanvasRenderingContext2D): { x: number, y: number } {
