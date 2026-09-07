@@ -39,6 +39,7 @@ implements IAnimatedGameObject {
   protected _frame: number = 0;
   protected _lastTimeFrameChanged: number = 0;
   protected _rotationInDegrees: number = 0;
+  protected _lastX: number = 0;
 
   constructor(
     x: number, 
@@ -80,14 +81,10 @@ implements IAnimatedGameObject {
 
   update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
     super.update(x, y);
+    this._mirrored = this._lastX - x > 0;
+    this._lastX = this._x;
     this._rotationInDegrees += degrees;
     this._currentAnimation = animation;
-
-    if (x < 0) {
-      this._mirrored = true;
-    } else if (x > 0) {
-      this._mirrored = false;
-    }
   }
   
   render(ctx: CanvasRenderingContext2D, showCenterOrigin: boolean = true): void {
