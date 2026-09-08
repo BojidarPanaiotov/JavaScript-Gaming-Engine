@@ -3,8 +3,8 @@ import { SpriteSheet } from "../entities/sprites/SpriteSheet";
 
 function initAnimationClips() {
   const animationClips = {
-    dino: {
-      idle: { from: 0, to: 3, fps: 6 },
+    player: {
+      idle: { from: 0, to: 0, fps: 0 },
       walk: { from: 4, to: 7, fps: 6 },
       attack: { from: 8, to: 11, fps: 6 },
       die: { from: 12, to: 15, fps: 6, loop: false },
@@ -25,14 +25,9 @@ export type AnimationClips = ReturnType<typeof initAnimationClips>;
 
 function initSpriteSheets() {
   const spriteSheets = {
-    dino: {
-      blue: new SpriteSheet('./game/assets/dino/blue', true, 24),
-      green: new SpriteSheet('./game/assets/dino/green', true, 24),
-      red: new SpriteSheet('./game/assets/dino/red', true, 24),
-      yellow: new SpriteSheet('./game/assets/dino/yellow', true, 24),
-    },
-    pistol: new SpriteSheet('./game/assets/pistol', true, 8),
-    coin: new SpriteSheet('./game/assets/coin', true, 8),
+    player: new SpriteSheet('./game/assets/orange-demon', true, 8),
+    // pistol: new SpriteSheet('./game/assets/pistol', true, 8),
+    // coin: new SpriteSheet('./game/assets/coin', true, 8),
   }
 
   return spriteSheets;
