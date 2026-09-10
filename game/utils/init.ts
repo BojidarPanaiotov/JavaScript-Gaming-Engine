@@ -26,8 +26,8 @@ export type AnimationClips = ReturnType<typeof initAnimationClips>;
 function initSpriteSheets() {
   const spriteSheets = {
     player: new SpriteSheet('./game/assets/orange-demon', true, 8),
-    // pistol: new SpriteSheet('./game/assets/pistol', true, 8),
-    // coin: new SpriteSheet('./game/assets/coin', true, 8),
+    pistol: new SpriteSheet('./game/assets/pistol', true, 8),
+    coin: new SpriteSheet('./game/assets/coin', true, 8),
   }
 
   return spriteSheets;

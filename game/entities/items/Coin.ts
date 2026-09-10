@@ -1,9 +1,9 @@
 import { AnimatedGameObject } from "../gameObject/AnimatedGameObject";
 import { ICollectable } from "../interfaces/Collect";
-import { Dino } from "../player/Player";
+import { Player } from "../player/Player";
 
 export class Coin extends AnimatedGameObject implements ICollectable {
-    onCollect(collector: Dino): void {
+    onCollect(collector: Player): void {
         collector.items.push(this);
         this.destroy();
     }
