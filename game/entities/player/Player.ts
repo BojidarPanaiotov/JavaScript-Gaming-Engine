@@ -26,6 +26,18 @@ export class Player extends AnimatedGameObject implements Health {
       this._currentAnimation = "die";
       return;
     }
+    console.log(x, y);
+    if (x > 0) {
+      animation = 'right';
+    } else if (x < 0) {
+      animation = 'left';
+    } else if (y < 0) {
+      animation = 'up';
+    } else if (y > 0) {
+      animation = 'down';
+    }
+
+    console.log(this._currentAnimation);
 
     super.update(x, y, degrees, animation);
   }
