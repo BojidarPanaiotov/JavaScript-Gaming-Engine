@@ -30,8 +30,8 @@ export class Player extends AnimatedGameObject implements Health {
     super.update(x, y, degrees, animation);
   }
 
-  render(ctx: CanvasRenderingContext2D, showCenterOrigin?: boolean): void {
-    super.render(ctx, showCenterOrigin);
+  render(ctx: CanvasRenderingContext2D): void {
+    super.render(ctx);
     renderHealth(ctx, this);
     this.renderItems(ctx);
   }
@@ -41,7 +41,7 @@ export class Player extends AnimatedGameObject implements Health {
       const pistol = item as Pistol;
       console.log(this.x, this.y)
       pistol.update(this.x + 50, this.y + 50, 0, "static");
-      pistol.collider.renderBorder(ctx);
+      pistol.collider.renderBorder();
       pistol.tick(ctx);
     });
   }

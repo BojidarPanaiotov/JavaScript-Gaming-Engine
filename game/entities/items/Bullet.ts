@@ -1,7 +1,7 @@
 import { IProjectable } from "../interfaces/Shooting";
 import { AnimatedGameObject } from "../gameObject/AnimatedGameObject";
 import { ICollectable } from "../interfaces/Collect";
-import { Dino } from "../player/Dino";
+import { Dino } from "../player/Player";
 
 export class Bullet extends AnimatedGameObject implements IProjectable, ICollectable {
     public vx: number;
