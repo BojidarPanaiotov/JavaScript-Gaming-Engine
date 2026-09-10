@@ -21,23 +21,19 @@ export class Player extends AnimatedGameObject implements Health {
   }
 
   update(x: number, y: number, degrees: number = 0, animation: AnimationKey = "idle"): void {
-    if (this.health <= 0) {
-      // TODO: Stuck when dies
-      this._currentAnimation = "die";
-      return;
-    }
-    console.log(x, y);
     if (x > 0) {
-      animation = 'right';
+      animation = 'walkRight';
     } else if (x < 0) {
-      animation = 'left';
+      animation = 'walkLeft';
     } else if (y < 0) {
-      animation = 'up';
+      animation = 'walkUp';
     } else if (y > 0) {
-      animation = 'down';
+      animation = 'walkDown';
     }
 
-    console.log(this._currentAnimation);
+    if (this.health <= 0) {
+      animation = "die";
+    }
 
     super.update(x, y, degrees, animation);
   }

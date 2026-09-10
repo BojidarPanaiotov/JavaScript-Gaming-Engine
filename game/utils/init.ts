@@ -4,11 +4,16 @@ import { SpriteSheet } from "../entities/sprites/SpriteSheet";
 function initAnimationClips() {
   const animationClips = {
     player: {
-      idle: { from: 0, to: 0, fps: 0 },
-      up: { from: 4, to: 4, fps: 0 },
-      left: { from: 6, to: 6, fps: 0 },
-      down: { from: 0, to: 0, fps: 0 },
-      right: { from: 2, to: 2, fps: 0 },
+      idle: { from: 0, to: 0, fps: 0 }, // Default Animation
+      static: { from: 0, to: 0, fps: 0 }, // Default Animation
+      staticUp: { from: 4, to: 4, fps: 0 },
+      staticLeft: { from: 6, to: 6, fps: 0 },
+      staticDown: { from: 0, to: 0, fps: 0 },
+      staticRight: { from: 2, to: 2, fps: 0 },
+      walkUp: { from: 24, to: 31, fps: 10 },
+      walkDown: { from: 8, to: 15, fps: 10 },
+      walkLeft: { from: 32, to: 39, fps: 10 },
+      walkRight: { from: 16, to: 23, fps: 10 },
     },
     pistol: {
       idle: { from: 0, to: 7, fps: 6 },
@@ -26,7 +31,7 @@ export type AnimationClips = ReturnType<typeof initAnimationClips>;
 
 function initSpriteSheets() {
   const spriteSheets = {
-    player: new SpriteSheet('./game/assets/orange-demon', true, 8),
+    player: new SpriteSheet('./game/assets/orange-demon', true, 40, 8),
     pistol: new SpriteSheet('./game/assets/pistol', true, 8),
     coin: new SpriteSheet('./game/assets/coin', true, 8),
   }

@@ -19,9 +19,25 @@ export type AnimationMap = {
   left?: AnimationClip;
   up?: AnimationClip;
   down?: AnimationClip;
+  walkUp?: AnimationClip;
+  walkDown?: AnimationClip;
+  walkLeft?: AnimationClip;
+  walkRight?: AnimationClip;
+  staticUp?: AnimationClip;
+  staticDown?: AnimationClip;
+  staticLeft?: AnimationClip;
+  staticRight?: AnimationClip;
 };
 
-export type AnimationKey = "idle" | "static" | "walk" | "jump" | "fall" | "die" | "right" | "left" | "up" | "down";
+export type AnimationKey = 
+  | "idle" 
+  | "static" 
+  | "walk" 
+  | "jump" 
+  | "fall" 
+  | "die" 
+  | "staticUp" | "staticDown" | "staticLeft" | "staticRight" |
+  "walkUp" | "walkDown" | "walkLeft" | "walkRight";
 
 export interface IAnimatedGameObject extends IBaseGameObject {
   animations: AnimationMap;
