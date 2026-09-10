@@ -88,41 +88,20 @@ implements IAnimatedGameObject {
     this._currentAnimation = animation;
   }
   
-  render(ctx: CanvasRenderingContext2D, showCenterOrigin: boolean = true): void {
+  render(ctx: CanvasRenderingContext2D): void {
     if (!this.spriteSheet) {
       return;
     }
 
-    const bitmap = this.spriteSheet.frames[this._frame];
-    if (!bitmap) {
+    const singleFrame = this.spriteSheet.frames[this._frame];
+    if (!singleFrame) {
       return;
     }
 
-    const { x: centerX, y: centerY } = this.getCenterOriginCoordinates(ctx);
-
     ctx.save();
     ctx.imageSmoothingEnabled = false;
-
-    // 1. Flip the image horizontally
-    if (this.mirrored) {
-      ctx.translate(centerX, centerY);
-      ctx.scale(-1, 1);
-      ctx.translate(-centerX, -centerY);
-    }
-
-    // 2. Draw the image
-    this.#rotateObject(ctx);
-    ctx.drawImage(bitmap, this.x, this.y, this.width, this.height);
+    ctx.drawImage(singleFrame, this.x, this.y, this.width, this.height);
     ctx.restore();
-
-    // 3. Draw the center origin
-    if (showCenterOrigin) {
-      ctx.beginPath();
-      ctx.fillStyle = "red";
-      ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-    }
   }
 
   animate(): void {
@@ -165,12 +144,5 @@ implements IAnimatedGameObject {
   tick(ctx: CanvasRenderingContext2D): void {
     this.animate();
     this.render(ctx);
-  }
-
-  #rotateObject (ctx: CanvasRenderingContext2D): void {
-    const { x: centerX, y: centerY } = this.getCenterOriginCoordinates(ctx);
-    ctx.translate(centerX, centerY);
-    ctx.rotate(this._rotationInDegrees * Math.PI / 180);
-    ctx.translate(-centerX, -centerY);
   }
 }
