@@ -9,16 +9,19 @@ export class SpriteSheet implements ISpriteSheet {
   protected image: HTMLImageElement;
   frames: ImageBitmap[] = [];
   totalFrames: number;
+  totalFramesPerRow: number;
   #loadPromise: Promise<boolean> | null = null;
 
   constructor(
     path: string, 
     preload: boolean = true, 
-    totalFrames: number
+    totalFrames: number,
+    totalFramesPerRow: number = 8
   ) {
     this.image = new Image();
     this.image.src = `${path}.png`;
     this.totalFrames = totalFrames;
+    this.totalFramesPerRow = totalFramesPerRow;
 
     if (preload) {
       this.#load();
@@ -38,8 +41,8 @@ export class SpriteSheet implements ISpriteSheet {
 
       this.image.onerror = () => {
         this.#loadPromise = null;
-        throw new Error(`${GAME.ERROR_LOADING_SPRITE_SHEET} ${this.image.src}`);
         resolve(false);
+        throw new Error(`${GAME.ERROR_LOADING_SPRITE_SHEET} ${this.image.src}`);
       };
     });
 
@@ -47,9 +50,6 @@ export class SpriteSheet implements ISpriteSheet {
   }
 
   #getFrames(totalFrames: number): Promise<ImageBitmap[]> {
-    const frameWidth = this.image.width / totalFrames;
-    const frameHeight = this.image.height;
-
     return this.#load().then(async (loaded) => {
       if (!loaded) {
         return [];
@@ -59,22 +59,28 @@ export class SpriteSheet implements ISpriteSheet {
         return this.frames;
       }
 
+      const columns = this.totalFramesPerRow;
+      const rows = Math.ceil(totalFrames / columns);
+      const frameWidth = this.image.width / columns;
+      const frameHeight = this.image.height / rows;
+
       if (frameWidth > this.image.width || frameHeight > this.image.height) {
         throw new Error(
           `Frame size ${frameWidth}x${frameHeight} is larger than spritesheet ${this.image.width}x${this.image.height}`
         );
       }
 
-      const frameCount = Math.floor(this.image.width / frameWidth);
-
-      for (let i = 0; i < frameCount; i++) {
+      for (let i = 0; i < totalFrames; i++) {
+        const col = i % columns;
+        const row = Math.floor(i / columns);
         const bitmap = await createImageBitmap(
           this.image,
-          i * frameWidth,
-          0,
+          col * frameWidth,
+          row * frameHeight,
           frameWidth,
           frameHeight
         );
+
         this.frames.push(bitmap);
       }
 
