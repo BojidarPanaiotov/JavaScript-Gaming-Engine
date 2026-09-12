@@ -25,7 +25,7 @@ export class Player extends AnimatedGameObject implements Health {
   items: ICollectable[] = [];
 
   constructor(x: number, y: number) {
-    super(x, y, animationClips, spriteSheet);
+    super(x, y, animationClips, spriteSheet, 2);
   }
 
   get health(): number {

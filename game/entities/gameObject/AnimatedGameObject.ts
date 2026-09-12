@@ -62,9 +62,10 @@ export abstract class AnimatedGameObject extends BaseGameObject implements IAnim
     x: number, 
     y: number,
     animations: AnimationMap,
-    spriteSheet: ISpriteSheet
+    spriteSheet: ISpriteSheet,
+    scale: number = 1
   ) {
-    super(x, y, spriteSheet.singleFrameWidth, spriteSheet.singleFrameHeight);
+    super(x, y, spriteSheet.singleFrameWidth * scale, spriteSheet.singleFrameHeight * scale);
     this._animations = animations;
     this._spriteSheet = spriteSheet;
   }

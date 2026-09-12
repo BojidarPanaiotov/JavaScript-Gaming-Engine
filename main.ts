@@ -5,24 +5,24 @@ import { Camera } from "./game/entities/game/Camera";
 import { AnimatedGameObject } from "./game/entities/gameObject/AnimatedGameObject";
 import { Debuger } from "./game/entities/game/Debuger";
 import { spawnGameObject, spawnTreeGameObject } from "./game/utils/spawn";
+import { Tree } from "./game/entities/structure/Tree";
+import { WalkingPath } from "./game/entities/structure/WalkingPath";
 import { Coin } from "./game/entities/items/Coin";
 import { Pistol } from "./game/entities/items/Pistol";
-import { Tree } from "./game/entities/structure/Tree";
-import { Path } from "./game/entities/structure/Path";
 
 await init();
 
 const player = new Player(0, 0);
-player.zIndex = 2;
+player.zIndex = -1;
 const camera = new Camera();
 const controller = new Controller();
 const debuger = new Debuger();
 
 spawnGameObject(Coin, 10);
 spawnGameObject(Pistol, 10);
-spawnGameObject(Path, 10);
-spawnTreeGameObject(Tree, 25);
-spawnTreeGameObject(Tree, 25, 'autumn');
+spawnGameObject(WalkingPath, 10);
+spawnTreeGameObject(Tree, 150);
+spawnTreeGameObject(Tree, 150, 'autumn');
 
 function loop() {
   game.clear();
@@ -35,7 +35,7 @@ function loop() {
 
   game.gameObjects.sort((a: AnimatedGameObject, b: AnimatedGameObject) => a.zIndex - b.zIndex).forEach((obj: AnimatedGameObject) => {
     obj.tick(game.ctx);
-    obj.collider.renderBorder();
+    // obj.collider.renderBorder();
   });
 
   debuger.showObjectStats(player);

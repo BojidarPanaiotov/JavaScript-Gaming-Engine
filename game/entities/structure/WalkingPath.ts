@@ -7,7 +7,7 @@ const animationClips = {
 
 const spriteSheet = new SpriteSheet('./game/assets/tile-map', true, 4, 2);
 
-export class Path extends AnimatedGameObject {
+export class WalkingPath extends AnimatedGameObject {
   constructor(
     x: number, 
     y: number, 

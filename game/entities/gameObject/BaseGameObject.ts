@@ -74,4 +74,9 @@ export abstract class BaseGameObject implements IBaseGameObject {
     this._x += x;
     this._y += y;
   }
+
+  setSize(width: number, height: number): void {
+    this._width = width;
+    this._height = height;
+  }
 }

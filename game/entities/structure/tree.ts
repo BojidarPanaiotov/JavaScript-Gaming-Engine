@@ -1,5 +1,5 @@
-import { AnimatedGameObject, AnimationMap } from "../gameObject/AnimatedGameObject";
-import { ISpriteSheet, SpriteSheet } from "../sprites/SpriteSheet";
+import { AnimatedGameObject } from "../gameObject/AnimatedGameObject";
+import { SpriteSheet } from "../sprites/SpriteSheet";
 
 const animationClips = {
   idle: { from: 0, to: 15, fps: 10 }
@@ -18,6 +18,6 @@ export class Tree extends AnimatedGameObject {
     y: number, 
     treeType: TreeType
   ) {
-    super(x, y, animationClips, spriteSheets[treeType]);
+    super(x, y, animationClips, spriteSheets[treeType], 2);
   }
 }
