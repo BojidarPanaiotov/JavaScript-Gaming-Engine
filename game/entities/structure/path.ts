@@ -11,9 +11,7 @@ export class Path extends AnimatedGameObject {
   constructor(
     x: number, 
     y: number, 
-    width: number, 
-    height: number
   ) {
-    super(x, y, width, height, animationClips, spriteSheet);
+    super(x, y, animationClips, spriteSheet);
   }
 }

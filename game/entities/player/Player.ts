@@ -24,8 +24,8 @@ export class Player extends AnimatedGameObject implements Health {
   maxHealth: number = 100;
   items: ICollectable[] = [];
 
-  constructor(x: number, y: number, width: number, height: number) {
-    super(x, y, width, height, animationClips, spriteSheet);
+  constructor(x: number, y: number) {
+    super(x, y, animationClips, spriteSheet);
   }
 
   get health(): number {
@@ -67,7 +67,6 @@ export class Player extends AnimatedGameObject implements Health {
   renderItems(ctx: CanvasRenderingContext2D): void {
     this.items.forEach(item => {
       const pistol = item as Pistol;
-      console.log(this.x, this.y)
       pistol.update(this.x + 50, this.y + 50, 0, "static");
       pistol.collider.renderBorder();
       pistol.tick(ctx);

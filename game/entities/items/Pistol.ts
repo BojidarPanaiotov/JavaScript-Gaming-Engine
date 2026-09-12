@@ -16,8 +16,8 @@ export class Pistol extends AnimatedGameObject implements IShootable, ICollectab
     ammo: number = 7;
     bullets: IProjectable[] = [];
 
-    constructor(x: number, y: number, width: number, height: number) {
-        super(x, y, width, height, animationClips, spriteSheet);
+    constructor(x: number, y: number) {
+        super(x, y, animationClips, spriteSheet);
     }
 
     shoot(x: number, y: number): void { 

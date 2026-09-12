@@ -12,11 +12,9 @@ const spriteSheet = new SpriteSheet('./game/assets/coin', true, 8);
 export class Coin extends AnimatedGameObject implements ICollectable {
     constructor(
         x: number, 
-        y: number, 
-        width: number, 
-        height: number
+        y: number
     ) {
-        super(x, y, width, height, animationClips, spriteSheet);
+        super(x, y, animationClips, spriteSheet);
     }
 
     onCollect(collector: Player): void {

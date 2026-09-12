@@ -16,10 +16,8 @@ export class Tree extends AnimatedGameObject {
   constructor(
     x: number, 
     y: number, 
-    width: number, 
-    height: number,
     treeType: TreeType
   ) {
-    super(x, y, width, height, animationClips, spriteSheets[treeType]);
+    super(x, y, animationClips, spriteSheets[treeType]);
   }
 }

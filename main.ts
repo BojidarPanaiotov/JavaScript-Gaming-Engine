@@ -1,61 +1,45 @@
 import { init } from "./game/utils/init";
-import { Dino } from "./game/entities/classes/Dino";
-import { Controller } from "./game/entities/classes/Controller";
-import { Camera } from "./game/entities/classes/Camera";
-import { AnimatedGameObject } from "./game/entities/abstraction/gameObject/AnimatedGameObject";
-import { Debuger } from "./game/entities/classes/Debuger";
-import { generateRandomNumber } from "./game/utils/algorithms/utils";
+import { Player } from "./game/entities/player/Player";
+import { Controller } from "./game/entities/controls/Controller";
+import { Camera } from "./game/entities/game/Camera";
+import { AnimatedGameObject } from "./game/entities/gameObject/AnimatedGameObject";
+import { Debuger } from "./game/entities/game/Debuger";
+import { spawnGameObject, spawnTreeGameObject } from "./game/utils/spawn";
+import { Coin } from "./game/entities/items/Coin";
+import { Pistol } from "./game/entities/items/Pistol";
+import { Tree } from "./game/entities/structure/Tree";
+import { Path } from "./game/entities/structure/Path";
 
-init();
+await init();
 
-const size = 24 * 4;
-
-const dinoRed = new Dino(0, 0, size, size, animationClips.dino, spriteSheets.dino.red);
-const dinoGreen = new Dino(-2000,-1100, size, size, animationClips.dino, spriteSheets.dino.green);
-const dinoBlue = new Dino(0, 400, size, size, animationClips.dino, spriteSheets.dino.blue);
-const dinoYellow = new Dino(400, 400, size, size, animationClips.dino, spriteSheets.dino.yellow);
-
-function spawnDinos(amount: number) {
-  for (let i = 1; i <= amount; i++) {
-    const dinoSheetsArray = Object.values(spriteSheets.dino);
-    const randomX = generateRandomNumber(-1000, 1000);
-    const randomY = generateRandomNumber(-1000, 1000);
-    const randomHelath = generateRandomNumber(1, 100);
-    const randomDinoSheet = dinoSheetsArray[generateRandomNumber(0, dinoSheetsArray.length - 1)];
-    new Dino(randomX, randomY, size, size, animationClips.dino, randomDinoSheet).health = randomHelath;
-  }
-}
-spawnDinos(250);
-
+const player = new Player(0, 0);
+player.zIndex = 2;
 const camera = new Camera();
-const controller = new Controller(dinoRed);
-
+const controller = new Controller();
 const debuger = new Debuger();
+
+spawnGameObject(Coin, 10);
+spawnGameObject(Pistol, 10);
+spawnGameObject(Path, 10);
+spawnTreeGameObject(Tree, 25);
+spawnTreeGameObject(Tree, 25, 'autumn');
 
 function loop() {
   game.clear();
-
-  controller.move(10);
-
-  camera.follow(dinoRed);
-
+  
+  const move = controller.getNextMoveCoordinates(20);
+  player.update(move.x, move.y);
+  camera.follow(player);
   game.ctx.save();
-
   camera.apply(game.ctx);
 
-  game.gameObjects.forEach((obj) => {
-    if (obj instanceof AnimatedGameObject) {
-      obj.tick(game.ctx);
-    } else {
-      obj.render(game.ctx);
-    }
+  game.gameObjects.sort((a: AnimatedGameObject, b: AnimatedGameObject) => a.zIndex - b.zIndex).forEach((obj: AnimatedGameObject) => {
+    obj.tick(game.ctx);
+    obj.collider.renderBorder();
   });
 
-  debuger.showObjectStats(dinoRed);
-  // debuger.showCollisionBorders();
-
+  debuger.showObjectStats(player);
   camera.reset(game.ctx);
-
   game.ctx.restore();
 
   requestAnimationFrame(loop);
