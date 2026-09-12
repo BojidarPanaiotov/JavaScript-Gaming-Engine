@@ -24,6 +24,12 @@ function initAnimationClips() {
     },
     autumnTree: {
       idle: { from: 0, to: 15, fps: 10 }
+    },
+    normalTree: {
+      idle: { from: 0, to: 15, fps: 10 }
+    },
+    tile: {
+      idle: { from: 0, to: 0, fps: 0 }
     }
   }
 
@@ -38,6 +44,8 @@ function initSpriteSheets() {
     pistol: new SpriteSheet('./game/assets/pistol', true, 8),
     coin: new SpriteSheet('./game/assets/coin', true, 8),
     autumnTree: new SpriteSheet('./game/assets/autumn-tree', true, 16, 16),
+    normalTree: new SpriteSheet('./game/assets/normal-tree', true, 17, 17),
+    tile: new SpriteSheet('./game/assets/tile-map', true, 4, 2),
   }
 
   return spriteSheets;
