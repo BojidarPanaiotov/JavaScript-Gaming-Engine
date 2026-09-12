@@ -52,7 +52,7 @@ export interface IAnimatedGameObject extends IBaseGameObject {
 
 export abstract class AnimatedGameObject extends BaseGameObject implements IAnimatedGameObject {
   protected _animations: AnimationMap;
-  protected _currentAnimation: AnimationKey;
+  protected _currentAnimation: AnimationKey = "idle";
   protected _spriteSheet: ISpriteSheet;
   protected _frame: number = 0;
   protected _lastTimeFrameChanged: number = 0;
@@ -69,7 +69,6 @@ export abstract class AnimatedGameObject extends BaseGameObject implements IAnim
     super(x, y, width, height);
     this._animations = animations;
     this._spriteSheet = spriteSheet;
-    this._currentAnimation = "idle";
   }
 
   get animations(): AnimationMap {
