@@ -7,7 +7,7 @@ export class Game extends GameMap {
   ctx: CanvasRenderingContext2D;
   border: boolean;
   spacing: number;
-gameObjects: BaseGameObject[] = [];
+  gameObjects: BaseGameObject[] = [];
 
   constructor(
     width: number = 800, 

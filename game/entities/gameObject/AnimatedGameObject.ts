@@ -50,8 +50,7 @@ export interface IAnimatedGameObject extends IBaseGameObject {
   tick(ctx: CanvasRenderingContext2D): void;
 }
 
-export abstract class AnimatedGameObject extends BaseGameObject 
-implements IAnimatedGameObject {
+export abstract class AnimatedGameObject extends BaseGameObject implements IAnimatedGameObject {
   protected _animations: AnimationMap;
   protected _currentAnimation: AnimationKey;
   protected _spriteSheet: ISpriteSheet;

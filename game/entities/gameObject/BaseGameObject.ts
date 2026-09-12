@@ -6,6 +6,7 @@ export interface IBaseGameObject {
   y: number;
   width: number;
   height: number;
+  zIndex: number;
   collider: IBaseCollider;
   update(x: number, y: number): void;
   render(ctx: CanvasRenderingContext2D): void;
@@ -17,6 +18,7 @@ export abstract class BaseGameObject implements IBaseGameObject {
   protected _y: number;
   protected _width: number;
   protected _height: number;
+  protected _zIndex: number = 1;
   public collider: IBaseCollider;
 
   constructor(
@@ -48,6 +50,14 @@ export abstract class BaseGameObject implements IBaseGameObject {
 
   public get height(): number {
     return this._height;
+  }
+
+  public get zIndex(): number {
+    return this._zIndex;
+  }
+
+  set zIndex(value: number) {
+    this._zIndex = value;
   }
 
   abstract render(ctx: CanvasRenderingContext2D): void
