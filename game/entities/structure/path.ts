@@ -1,4 +1,19 @@
 import { AnimatedGameObject } from "../gameObject/AnimatedGameObject";
+import { SpriteSheet } from "../sprites/SpriteSheet";
+
+const animationClips = {
+  idle: { from: 0, to: 0, fps: 0 }
+};
+
+const spriteSheet = new SpriteSheet('./game/assets/tile-map', true, 4, 2);
 
 export class Path extends AnimatedGameObject {
+  constructor(
+    x: number, 
+    y: number, 
+    width: number, 
+    height: number
+  ) {
+    super(x, y, width, height, animationClips, spriteSheet);
+  }
 }
