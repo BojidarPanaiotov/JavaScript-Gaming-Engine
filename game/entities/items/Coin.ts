@@ -4,21 +4,18 @@ import { Player } from "../player/Player";
 import { SpriteSheet } from "../sprites/SpriteSheet";
 
 const animationClips = {
-  idle: { from: 0, to: 7, fps: 6 }
+  idle: { from: 0, to: 7, fps: 6 },
 };
 
-const spriteSheet = new SpriteSheet('./game/assets/coin', true, 8);
+const spriteSheet = new SpriteSheet("./game/assets/coin", true, 8);
 
 export class Coin extends AnimatedGameObject implements ICollectable {
-    constructor(
-        x: number, 
-        y: number
-    ) {
-        super(x, y, animationClips, spriteSheet);
-    }
+  constructor(x: number, y: number) {
+    super(x, y, animationClips, spriteSheet);
+  }
 
-    onCollect(collector: Player): void {
-        collector.items.push(this);
-        this.destroy();
-    }
+  onCollect(collector: Player): void {
+    collector.items.push(this);
+    this.destroy();
+  }
 }

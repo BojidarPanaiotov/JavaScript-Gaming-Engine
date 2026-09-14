@@ -3,17 +3,11 @@ import { BaseGameObject } from "../gameObject/BaseGameObject";
 export abstract class GameMap {
   gameObjects: BaseGameObject[] = [];
 
-  constructor() {
+  constructor() {}
 
-  }
+  start(): void {}
 
-  start(): void {
-  }
+  clear(): void {}
 
-  clear(): void {
-  }
-
-  resize(): void {
-    
-  }
+  resize(): void {}
 }

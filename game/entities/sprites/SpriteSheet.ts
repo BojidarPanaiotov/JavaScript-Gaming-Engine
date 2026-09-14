@@ -121,7 +121,7 @@ export class SpriteSheet implements ISpriteSheet {
 
       this.frames.push(bitmap);
     }
-    
+
     return this.frames;
   }
 }

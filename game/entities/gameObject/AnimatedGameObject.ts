@@ -29,15 +29,21 @@ export type AnimationMap = {
   staticRight?: AnimationClip;
 };
 
-export type AnimationKey = 
-  | "idle" 
-  | "static" 
-  | "walk" 
-  | "jump" 
-  | "fall" 
-  | "die" 
-  | "staticUp" | "staticDown" | "staticLeft" | "staticRight" |
-  "walkUp" | "walkDown" | "walkLeft" | "walkRight";
+export type AnimationKey =
+  | "idle"
+  | "static"
+  | "walk"
+  | "jump"
+  | "fall"
+  | "die"
+  | "staticUp"
+  | "staticDown"
+  | "staticLeft"
+  | "staticRight"
+  | "walkUp"
+  | "walkDown"
+  | "walkLeft"
+  | "walkRight";
 
 export interface IAnimatedGameObject extends IBaseGameObject {
   animations: AnimationMap;
@@ -59,7 +65,7 @@ export abstract class AnimatedGameObject extends BaseGameObject implements IAnim
   protected _rotationInDegrees: number = 0;
 
   constructor(
-    x: number, 
+    x: number,
     y: number,
     animations: AnimationMap,
     spriteSheet: ISpriteSheet,
@@ -95,7 +101,7 @@ export abstract class AnimatedGameObject extends BaseGameObject implements IAnim
     this._rotationInDegrees += degrees;
     this._currentAnimation = animation;
   }
-  
+
   render(ctx: CanvasRenderingContext2D): void {
     if (!this.spriteSheet) {
       return;
@@ -127,7 +133,7 @@ export abstract class AnimatedGameObject extends BaseGameObject implements IAnim
     }
 
     const now = performance.now();
-    
+
     // 2. Check if the frame should be changed
     if (now - this.lastTimeFrameChanged < 1000 / clip.fps) return;
 

@@ -22,21 +22,23 @@ spawnGameObject(Coin, 10);
 spawnGameObject(Pistol, 10);
 spawnGameObject(WalkingPath, 10);
 spawnTreeGameObject(Tree, 150);
-spawnTreeGameObject(Tree, 150, 'autumn');
+spawnTreeGameObject(Tree, 150, "autumn");
 
 function loop() {
   game.clear();
-  
-  const move = controller.getNextMoveCoordinates(20);
+
+  const move = controller.getNextMoveCoordinates(22);
   player.update(move.x, move.y);
   camera.follow(player);
   game.ctx.save();
   camera.apply(game.ctx);
 
-  game.gameObjects.sort((a: AnimatedGameObject, b: AnimatedGameObject) => a.zIndex - b.zIndex).forEach((obj: AnimatedGameObject) => {
-    obj.tick(game.ctx);
-    // obj.collider.renderBorder();
-  });
+  game.gameObjects
+    .sort((a: AnimatedGameObject, b: AnimatedGameObject) => a.zIndex - b.zIndex)
+    .forEach((obj: AnimatedGameObject) => {
+      obj.tick(game.ctx);
+      obj.collider.renderBorder();
+    });
 
   debuger.showObjectStats(player);
   camera.reset(game.ctx);

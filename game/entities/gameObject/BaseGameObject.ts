@@ -7,6 +7,7 @@ export interface IBaseGameObject {
   width: number;
   height: number;
   zIndex: number;
+  solid: boolean;
   collider: IBaseCollider;
   update(x: number, y: number): void;
   render(ctx: CanvasRenderingContext2D): void;
@@ -19,14 +20,10 @@ export abstract class BaseGameObject implements IBaseGameObject {
   protected _width: number;
   protected _height: number;
   protected _zIndex: number = 1;
+  protected _solid: boolean = false;
   public collider: IBaseCollider;
 
-  constructor(
-    x: number, 
-    y: number, 
-    width: number, 
-    height: number
-) {
+  constructor(x: number, y: number, width: number, height: number) {
     this._x = x;
     this._y = y;
     this._width = width;
@@ -60,7 +57,15 @@ export abstract class BaseGameObject implements IBaseGameObject {
     this._zIndex = value;
   }
 
-  abstract render(ctx: CanvasRenderingContext2D): void
+  public get solid(): boolean {
+    return this._solid;
+  }
+
+  set solid(value: boolean) {
+    this._solid = value;
+  }
+
+  abstract render(ctx: CanvasRenderingContext2D): void;
 
   destroy(): boolean {
     const index = game.gameObjects.indexOf(this);

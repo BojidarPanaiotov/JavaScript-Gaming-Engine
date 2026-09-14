@@ -1,9 +1,9 @@
 export const GAME = {
   // Styling
   SCREEN_BORDER_WIDTH: 1,
-  SCREEN_BORDER_COLOR: 'red',
-  COORDINATE_SYSTEM_COLOR: 'blue',
+  SCREEN_BORDER_COLOR: "red",
+  COORDINATE_SYSTEM_COLOR: "blue",
   // Errors
   BROKEN_CANVAS: "2D canvas context is not available",
-  ERROR_LOADING_SPRITE_SHEET: "Error loading sprite sheet. Check if the path is correct: "
-}
+  ERROR_LOADING_SPRITE_SHEET: "Error loading sprite sheet. Check if the path is correct: ",
+};

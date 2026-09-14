@@ -20,7 +20,11 @@ export class Debuger {
     ctx.fillText(`Y: ${obj.y.toFixed(0)}`, x, y + lineHeight);
     ctx.fillText(`W: ${obj.width.toFixed(0)}`, x, y + lineHeight * 2);
     ctx.fillText(`H: ${obj.height.toFixed(0)}`, x, y + lineHeight * 3);
-    ctx.fillText(`Center: X: ${objectCenterX.toFixed(0)}, Y: ${objectCenterY.toFixed(0)}`, x, y + lineHeight * 4);
+    ctx.fillText(
+      `Center: X: ${objectCenterX.toFixed(0)}, Y: ${objectCenterY.toFixed(0)}`,
+      x,
+      y + lineHeight * 4
+    );
     ctx.restore();
   }
 

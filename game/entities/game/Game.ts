@@ -1,6 +1,6 @@
-import {GameMap} from '../game/GameMap'
-import { GAME } from '../../constants/constants';
-import { BaseGameObject } from '../gameObject/BaseGameObject';
+import { GameMap } from "../game/GameMap";
+import { GAME } from "../../constants/constants";
+import { BaseGameObject } from "../gameObject/BaseGameObject";
 
 export class Game extends GameMap {
   canvas: HTMLCanvasElement;
@@ -10,15 +10,15 @@ export class Game extends GameMap {
   gameObjects: BaseGameObject[] = [];
 
   constructor(
-    width: number = 800, 
-    height: number = 400, 
-    fullscreen: boolean = true, 
+    width: number = 800,
+    height: number = 400,
+    fullscreen: boolean = true,
     border: boolean = true,
     spacing: number = 0
   ) {
     super();
-    
-    const canvas = document.createElement('canvas');
+
+    const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
 
     if (!context) {
@@ -45,15 +45,15 @@ export class Game extends GameMap {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
 
-      this.resize()
+      this.resize();
     }
   }
 
   start(): void {
-    document.body.appendChild(this.canvas)
+    document.body.appendChild(this.canvas);
 
-    window.addEventListener('resize', () => {
-      this.resize()
+    window.addEventListener("resize", () => {
+      this.resize();
     });
   }
 
@@ -66,8 +66,8 @@ export class Game extends GameMap {
     this.canvas.height = window.innerHeight;
 
     if (this.border) {
-      this.canvas.width = this.canvas.width - (GAME.SCREEN_BORDER_WIDTH * 2);
-      this.canvas.height = this.canvas.height - (GAME.SCREEN_BORDER_WIDTH * 2);
+      this.canvas.width = this.canvas.width - GAME.SCREEN_BORDER_WIDTH * 2;
+      this.canvas.height = this.canvas.height - GAME.SCREEN_BORDER_WIDTH * 2;
     }
 
     if (this.spacing) {
@@ -79,7 +79,7 @@ export class Game extends GameMap {
   renderCoordinateSystem(multiplier: number) {
     const rowsToRender = Math.floor(this.canvas.width / multiplier);
     const colsToRender = Math.floor(this.canvas.height / multiplier);
-    const totalRenders = Math.max(rowsToRender,colsToRender);
+    const totalRenders = Math.max(rowsToRender, colsToRender);
 
     for (let i = 1; i <= totalRenders; i++) {
       this.ctx.fillStyle = GAME.COORDINATE_SYSTEM_COLOR;
