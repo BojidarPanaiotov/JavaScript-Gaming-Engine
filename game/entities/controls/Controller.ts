@@ -8,13 +8,13 @@ export class Controller {
 
   bindKeyDownEvent(): void {
     window.addEventListener("keydown", (event) => {
-      this.keys.add(event.key.toLowerCase());
+      this.keys.add(event.code.toLowerCase());
     });
   }
 
   bindKeyUpEvent(): void {
     window.addEventListener("keyup", (event) => {
-      this.keys.delete(event.key.toLowerCase());
+      this.keys.delete(event.code.toLowerCase());
     });
   }
 
@@ -22,16 +22,16 @@ export class Controller {
     let x = 0;
     let y = 0;
 
-    if (this.keys.has("d")) {
+    if (this.keys.has("keyd")) {
       x += speed;
     }
-    if (this.keys.has("a")) {
+    if (this.keys.has("keya")) {
       x -= speed;
     }
-    if (this.keys.has("w")) {
+    if (this.keys.has("keyw")) {
       y -= speed;
     }
-    if (this.keys.has("s")) {
+    if (this.keys.has("keys")) {
       y += speed;
     }
 
