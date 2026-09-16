@@ -83,15 +83,5 @@ export class Player extends AnimatedGameObject implements Health {
   render(ctx: CanvasRenderingContext2D): void {
     super.render(ctx);
     renderHealth(ctx, this);
-    this.renderItems(ctx);
-  }
-
-  renderItems(ctx: CanvasRenderingContext2D): void {
-    this.items.forEach((item) => {
-      const pistol = item as Pistol;
-      pistol.update(this.x + 50, this.y + 50, 0, "static");
-      pistol.collider.renderBorder();
-      pistol.tick(ctx);
-    });
   }
 }
